@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="cache/|mappings/|mappings/modules/|mappings/modules/sys/|mappings/|cache/|mappings/" kind="src" path="src/resources"/>
+	<classpathentry kind="src" path="src/resources/mappings"/>
+	<classpathentry kind="src" path="src/resources/cache"/>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang-2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging-1.1.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ezmorph-1.0.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/fastjson-1.1.36.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json-lib-2.2.3-jdk15.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ojdbc-11g.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-aspects-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-instrument-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-instrument-tomcat-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-struts-3.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/standard-1.1.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mybatis-3.2.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mybatis-spring-1.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-core-1.2.3.jar" sourcepath="E:/andriod/Maven/repo/m2/org/apache/shiro/shiro-core/1.2.3/shiro-core-1.2.3-sources.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/core-2.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/google-collections-1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/guava-17.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-validator-5.2.4.Final.jar" sourcepath="E:/andriod/Maven/repo/m2/org/hibernate/hibernate-validator/5.2.4.Final/hibernate-validator-5.2.4.Final-sources.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-annotations-2.2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-core-2.2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-databind-2.2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-module-jaxb-annotations-2.2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.30.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-cas-1.2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-spring-1.2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-web-1.2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.7.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-aop-4.1.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-beans-4.1.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-context-4.1.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-context-support-4.1.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-core-4.1.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-expression-4.1.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-jdbc-4.1.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-jms-4.1.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-orm-4.1.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-oxm-4.1.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-test-4.1.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-tx-4.1.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-4.1.9.RELEASE.jar" sourcepath="E:/maven_lib/org/springframework/spring-web/4.1.9.RELEASE/spring-web-4.1.9.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-4.1.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsp-api-2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/validation-api-1.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jboss-logging-3.2.1.Final.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/classmate-1.1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-ehcache-1.2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ehcache-core-2.6.11.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ehcache-web-2.0.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jedis-2.5.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/servlet-api-2.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/sitemesh-2.4.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/pull-parser-2.1.10.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xmlpull_1_0_5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xstream-1.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/druid-1.0.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-log4j12-1.7.7.jar"/>
+	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
+</classpath>
