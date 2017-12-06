@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.common.util;
 
 import java.util.Iterator;
@@ -13,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Cache工具类
- * @author ThinkGem
+ * @author admin
  * @version 2013-5-29
  */
 public class CacheUtils {

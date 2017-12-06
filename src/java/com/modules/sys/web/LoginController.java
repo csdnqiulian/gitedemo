@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.modules.sys.web;
 
 import java.util.Map;
@@ -35,7 +32,7 @@ import com.common.web.BaseController;
 
 /**
  * 登录Controller
- * @author ThinkGem
+ * @author admin
  * @version 2013-5-31
  */
 @Controller

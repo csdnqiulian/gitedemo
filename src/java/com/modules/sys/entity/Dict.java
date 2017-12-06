@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.modules.sys.entity;
 
 import javax.validation.constraints.NotNull;
@@ -10,7 +7,7 @@ import com.common.persistence.DataEntity;
 
 /**
  * 字典Entity
- * @author ThinkGem
+ * @author admin
  * @version 2013-05-15
  */
 public class Dict extends DataEntity<Dict> {

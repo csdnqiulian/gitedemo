@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.common.web;
 
 import java.beans.PropertyEditorSupport;
@@ -32,7 +29,7 @@ import com.common.util.DateUtils;
 
 /**
  * 控制器支持类
- * @author ThinkGem
+ * @author admin
  * @version 2013-3-23
  */
 public abstract class BaseController {

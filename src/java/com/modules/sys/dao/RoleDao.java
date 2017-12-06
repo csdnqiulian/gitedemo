@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.modules.sys.dao;
 
 import com.common.persistence.CrudDao;
@@ -9,7 +6,7 @@ import com.modules.sys.entity.Role;
 
 /**
  * 角色DAO接口
- * @author ThinkGem
+ * @author admin
  * @version 2013-12-05
  */
 @MyBatisDao

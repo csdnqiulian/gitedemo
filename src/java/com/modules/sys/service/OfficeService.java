@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.modules.sys.service;
 
 import java.util.ArrayList;
@@ -14,7 +11,7 @@ import com.common.util.UserUtils;
 
 /**
  * 机构Service
- * @author ThinkGem
+ * @author admin
  * @version 2014-05-16
  */
 @Service

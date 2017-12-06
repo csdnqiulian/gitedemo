@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2013 <a href="httparamMap://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.modules.sys.service;
 
 import com.modules.sys.dao.LogDao;
@@ -15,7 +12,7 @@ import com.common.util.DateUtils;
 
 /**
  * 日志Service
- * @author ThinkGem
+ * @author admin
  * @version 2014-05-16
  */
 @Service

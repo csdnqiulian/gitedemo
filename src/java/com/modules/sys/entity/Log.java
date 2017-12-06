@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.modules.sys.entity;
 
 import java.util.Date;
@@ -11,7 +8,7 @@ import com.common.util.StringUtils;
 
 /**
  * 日志Entity
- * @author ThinkGem
+ * @author admin
  * @version 2014-8-19
  */
 public class Log extends DataEntity<Log> {

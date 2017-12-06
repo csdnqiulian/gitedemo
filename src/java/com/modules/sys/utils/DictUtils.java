@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.modules.sys.utils;
 
 import java.util.List;
@@ -17,7 +14,7 @@ import com.common.util.SpringContextHolder;
 
 /**
  * 字典工具类
- * @author ThinkGem
+ * @author admin
  * @version 2013-5-29
  */
 public class DictUtils {

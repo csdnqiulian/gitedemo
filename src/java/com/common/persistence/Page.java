@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.common.persistence;
 
 import java.util.ArrayList;
@@ -16,7 +13,7 @@ import com.common.util.CookieUtils;
 
 /**
  * 分页类
- * @author ThinkGem
+ * @author admin
  * @version 2013-7-2
  * @param <T>
  */

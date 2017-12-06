@@ -16,7 +16,7 @@ import com.modules.sys.service.LogService;
 
 /**
  * 日志Controller
- * @author ThinkGem
+ * @author admin
  * @version 2013-6-2
  */
 @Controller

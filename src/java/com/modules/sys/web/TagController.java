@@ -10,7 +10,7 @@ import com.common.web.BaseController;
 
 /**
  * 标签Controller
- * @author ThinkGem
+ * @author admin
  * @version 2013-3-23
  */
 @Controller

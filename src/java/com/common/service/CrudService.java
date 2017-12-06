@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.common.service;
 
 import java.util.List;
@@ -14,7 +11,7 @@ import com.common.persistence.Page;
 
 /**
  * Service基类
- * @author ThinkGem
+ * @author admin
  * @version 2014-05-16
  */
 @Transactional(readOnly = true)

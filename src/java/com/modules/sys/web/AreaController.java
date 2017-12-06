@@ -26,7 +26,7 @@ import com.modules.sys.service.AreaService;
 
 /**
  * 区域Controller
- * @author ThinkGem
+ * @author admin
  * @version 2013-5-15
  */
 @Controller

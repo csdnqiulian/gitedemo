@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.modules.sys.web;
 
 import java.util.List;
@@ -31,7 +28,7 @@ import com.modules.sys.utils.DictUtils;
 
 /**
  * 机构Controller
- * @author ThinkGem
+ * @author admin
  * @version 2013-5-15
  */
 @Controller

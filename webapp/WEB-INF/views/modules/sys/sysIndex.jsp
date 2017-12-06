@@ -13,11 +13,7 @@
 		#footer {margin:8px 0 0 0;padding:3px 0 0 0;font-size:11px;text-align:center;border-top:2px solid #0663A2;}
 		#footer, #footer a {color:#999;} #left{overflow-x:hidden;overflow-y:auto;height: 550px;} #left .collapse{position:static;}
 		#userControl>li>a{/*color:#fff;*/text-shadow:none;} #userControl>li>a:hover, #user #userControl>li.open>a{background:transparent;}
-		.navbar .nav>li>a{
-			float:none;
-			color:#157AB3;
-			text-decoration:none;
-		}
+		
 	</style>
 	<script type="text/javascript">
 	
@@ -43,7 +39,6 @@
 				<ul class="dropdown-menu">
 					<li><a href="${ctx}/sys/user/info" target="mainFrame"><i class="icon-user"></i>&nbsp; 个人信息</a></li>
 					<li><a href="${ctx}/sys/user/modifyPwd" target="mainFrame"><i class="icon-lock"></i>&nbsp;  修改密码</a></li>
-					<li><a href="${ctx}/oa/oaNotify/self" target="mainFrame"><i class="icon-bell"></i>&nbsp;  我的通知 <span id="notifyNum2" class="label label-info hide"></span></a></li>
 				</ul>
 			</li>
 			<li><a href="${ctx}/logout" style="color:white;"  title="退出登录">退出</a></li>
@@ -67,30 +62,26 @@
 										<c:if test="${menu2.parent.id eq menu.id&&menu2.isShow eq '1'}">
 										<div class="accordion-inner">
 											<ul class="nav nav-list">
-													<li>
-														<a data-toggle="collapse" data-href=".menu3-${menu2.id}" href="${fn:indexOf(menu2.href, '://') eq -1 ? ctx : ''}${not empty menu2.href ? menu2.href : '#'}" >
+													<li class="menu">
+														<a class="menu" data-toggle="collapse" data-href="#menu3-${menu2.id}" href="#menu3-${menu2.id}" >
 															<i class="accordion-toggle" class="icon-${not empty menu2.icon ? menu2.icon : 'circle-arrow-right'}"></i>&nbsp;${menu2.name}</a>
 															
-														<%-- <ul class="nav nav-list" style="margin:0;padding-right:0;">
-															<c:forEach items="${menuList}" var="menu3"><c:if test="${menu3.parent.id eq menu2.id&&menu3.isShow eq '1'}">
-																<li class="accordion-toggle" class="menu3-${menu2.id}"><a href="${fn:indexOf(menu3.href, '://') eq -1 ? ctx : ''}${not empty menu3.href ? menu3.href : '/404'}" target="${not empty menu3.target ? menu3.target : 'mainFrame'}" ><i class="icon-${not empty menu3.icon ? menu3.icon : 'circle-arrow-right'}"></i>&nbsp;${menu3.name}</a></li></c:if>
-															</c:forEach>
-														</ul> --%>
 													</li>
 													
 											</ul>
 										</div>
-										<c:forEach items="${menuList}" var="menu3">
-											<c:if test="${menu3.parent.id eq menu2.id&&menu3.isShow eq '1'}">
-												<div id=".menu3-${menu2.id}" class="accordion-body collapse">
-													<div class="accordion-inner1">
-														<ul class="nav nav-list">
-															<li class="accordion-toggle" class="menu3-${menu2.id}"><a href="${fn:indexOf(menu3.href, '://') eq -1 ? ctx : ''}${not empty menu3.href ? menu3.href : '/404'}" target="${not empty menu3.target ? menu3.target : 'mainFrame'}" ><i class="icon-${not empty menu3.icon ? menu3.icon : 'circle-arrow-right'}"></i>&nbsp;${menu3.name}</a></li>
+										<div id="menu3-${menu2.id}" class="accordion-body collapse">
+													<div class="accordion-innerq">
+														<ul class="navq nav-listq">
+															<c:forEach items="${menuList}" var="menu3">
+																<c:if test="${menu3.parent.id eq menu2.id&&menu3.isShow eq '1'}">
+													
+																<li class="accordion-toggle" class="menu3-${menu2.id}"><a class="menu" href="${fn:indexOf(menu3.href, '://') eq -1 ? ctx : ''}${not empty menu3.href ? menu3.href : '/404'}" target="${not empty menu3.target ? menu3.target : 'mainFrame'}" ><i class="icon-${not empty menu3.icon ? menu3.icon : 'circle-arrow-right'}"></i>&nbsp;${menu3.name}</a></li>
+															 </c:if>
+									   						 </c:forEach>
 														</ul>
-													</div>
-										   		 </div>
-									   		 </c:if>
-								   		 </c:forEach>
+								   		 	</div>
+										  </div>
 										<c:set var="firstMenu" value="false"/>
 										</c:if>
 										</c:forEach>
@@ -109,7 +100,7 @@
 				</div>
 			</div>
 		   	<div id="footer" class="row-fluid">
-	            Copyright &copy; 2012-${fns:getConfig('copyrightYear')} ${fns:getConfig('productName')} - Powered By <a href="http://jeesite.com" target="_blank">JeeSite</a> ${fns:getConfig('version')}
+	            Copyright &copy; 2012-${fns:getConfig('copyrightYear')} ${fns:getConfig('productName')} - Powered By <a href="http://jeesite.com" target="_blank">testweb</a> ${fns:getConfig('version')}
 			</div>
 	 </div>
   </div>

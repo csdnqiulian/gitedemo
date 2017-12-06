@@ -30,7 +30,7 @@ import com.modules.sys.service.SystemService;
 
 /**
  * 角色Controller
- * @author ThinkGem
+ * @author admin
  * @version 2013-12-05
  */
 @Controller

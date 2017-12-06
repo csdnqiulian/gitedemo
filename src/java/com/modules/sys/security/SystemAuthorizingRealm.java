@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.modules.sys.security;
 
 import java.io.Serializable;
@@ -41,7 +38,7 @@ import com.modules.sys.web.LoginController;
 
 /**
  * 系统安全认证实现类
- * @author ThinkGem
+ * @author admin
  * @version 2014-7-5
  */
 @Service

@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.modules.sys.entity;
 
 import java.util.Date;
@@ -18,7 +15,7 @@ import com.google.common.collect.Lists;
 
 /**
  * 用户Entity
- * @author ThinkGem
+ * @author admin
  * @version 2013-12-05
  */
 public class User extends DataEntity<User> {

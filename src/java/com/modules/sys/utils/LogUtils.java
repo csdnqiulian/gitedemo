@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.modules.sys.utils;
 
 import java.lang.reflect.Method;
@@ -26,7 +23,7 @@ import com.common.util.UserUtils;
 
 /**
  * 字典工具类
- * @author ThinkGem
+ * @author admin
  * @version 2014-11-7
  */
 public class LogUtils {
