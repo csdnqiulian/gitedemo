@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.modules.test.dao.TestfreemarkerDao">
+    
+	<sql id="testfreemarkerColumns">
+		a.id AS "id",
+		a.name AS "name",
+		a.remark AS "remark"
+	</sql>
+	
+	<sql id="testfreemarkerJoins">
+	</sql>
+    
+	<select id="get" resultType="Testfreemarker">
+		SELECT 
+			<include refid="testfreemarkerColumns"/>
+		FROM testfreemarker a
+		<include refid="testfreemarkerJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="Testfreemarker">
+		SELECT 
+			<include refid="testfreemarkerColumns"/>
+		FROM testfreemarker a
+		<include refid="testfreemarkerJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="Testfreemarker">
+		SELECT 
+			<include refid="testfreemarkerColumns"/>
+		FROM testfreemarker a
+		<include refid="testfreemarkerJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO testfreemarker(
+			name,
+			remark
+		) VALUES (
+			#{name},
+			#{remark}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE testfreemarker SET 	
+			name = #{name},
+			remark = #{remark}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM testfreemarker
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
