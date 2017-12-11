@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="cache/|mappings/|mappings/modules/|mappings/modules/sys/|mappings/|cache/|mappings/" kind="src" path="src/resources"/>
-	<classpathentry kind="src" path="src/resources/mappings"/>
-	<classpathentry kind="src" path="src/resources/cache"/>
-	<classpathentry kind="src" path="src/java"/>
+	<classpathentry excluding="cache/|mappings/|mappings/modules/|mappings/modules/sys/|mappings/|cache/|mappings/" kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/main/resources/mappings"/>
+	<classpathentry kind="src" path="src/main/resources/cache"/>
+	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/commons-beanutils-1.7.0.jar"/>
@@ -40,7 +40,7 @@
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/shiro-spring-1.2.3.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/shiro-web-1.2.3.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/slf4j-api-1.7.7.jar"/>
-	<classpathentry kind="lib" path="webapp/WEB-INF/lib/spring-aop-4.1.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="webapp/WEB-INF/lib/spring-aop-4.1.9.RELEASE.jar" sourcepath="E:/maven_lib/org/springframework/spring-aop/4.1.9.RELEASE/spring-aop-4.1.9.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/spring-beans-4.1.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/spring-context-4.1.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/spring-context-support-4.1.9.RELEASE.jar"/>
@@ -53,7 +53,7 @@
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/spring-test-4.1.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/spring-tx-4.1.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/spring-web-4.1.9.RELEASE.jar" sourcepath="E:/maven_lib/org/springframework/spring-web/4.1.9.RELEASE/spring-web-4.1.9.RELEASE-sources.jar"/>
-	<classpathentry kind="lib" path="webapp/WEB-INF/lib/spring-webmvc-4.1.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="webapp/WEB-INF/lib/spring-webmvc-4.1.9.RELEASE.jar" sourcepath="E:/maven_lib/org/springframework/spring-webmvc/4.1.9.RELEASE/spring-webmvc-4.1.9.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/jsp-api-2.1.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/validation-api-1.1.0.Final.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/jboss-logging-3.2.1.Final.jar"/>
