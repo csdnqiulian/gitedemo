@@ -7,7 +7,7 @@ import com.modules.test.entity.Testfreemarker;
 /**
  * 测试DAO接口
  * @author admin
- * @version 2017-12-10
+ * @version 2017-12-12
  */
 @MyBatisDao
 public interface TestfreemarkerDao extends CrudDao<Testfreemarker> {

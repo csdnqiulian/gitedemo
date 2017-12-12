@@ -79,10 +79,6 @@ public class RoleController extends BaseController {
 			addMessage(redirectAttributes, "越权操作，只有超级管理员才能修改此数据！");
 			return "redirect:" + adminPath + "/sys/role/?repage";
 		}
-		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:" + adminPath + "/sys/role/?repage";
-		}
 		if (!beanValidator(model, role)){
 			return form(role, model);
 		}
@@ -104,10 +100,6 @@ public class RoleController extends BaseController {
 	public String delete(Role role, RedirectAttributes redirectAttributes) {
 		if(!UserUtils.getUser().isAdmin() && role.getSysData().equals(Global.YES)){
 			addMessage(redirectAttributes, "越权操作，只有超级管理员才能修改此数据！");
-			return "redirect:" + adminPath + "/sys/role/?repage";
-		}
-		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
 			return "redirect:" + adminPath + "/sys/role/?repage";
 		}
 //		if (Role.isAdmin(id)){
@@ -186,10 +178,6 @@ public class RoleController extends BaseController {
 	@RequiresPermissions("sys:role:edit")
 	@RequestMapping(value = "outrole")
 	public String outrole(String userId, String roleId, RedirectAttributes redirectAttributes) {
-		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:" + adminPath + "/sys/role/assign?id="+roleId;
-		}
 		Role role = systemService.getRole(roleId);
 		User user = systemService.getUser(userId);
 		if (UserUtils.getUser().getId().equals(userId)) {
@@ -219,10 +207,6 @@ public class RoleController extends BaseController {
 	@RequiresPermissions("sys:role:edit")
 	@RequestMapping(value = "assignrole")
 	public String assignRole(Role role, String[] idsArr, RedirectAttributes redirectAttributes) {
-		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:" + adminPath + "/sys/role/assign?id="+role.getId();
-		}
 		StringBuilder msg = new StringBuilder();
 		int newNum = 0;
 		for (int i = 0; i < idsArr.length; i++) {

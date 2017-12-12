@@ -24,7 +24,7 @@ import com.modules.gen.util.GenUtils;
 
 /**
  * 生成方案Controller
- * @author ThinkGem
+ * @author admin
  * @version 2013-10-15
  */
 @Controller
@@ -63,9 +63,6 @@ public class GenSchemeController extends BaseController {
 		if (StringUtils.isBlank(genScheme.getPackageName())){
 			genScheme.setPackageName("com.modules");
 		}
-//		if (StringUtils.isBlank(genScheme.getFunctionAuthor())){
-//			genScheme.setFunctionAuthor(UserUtils.getUser().getName());
-//		}
 		model.addAttribute("genScheme", genScheme);
 		model.addAttribute("config", GenUtils.getConfig());
 		model.addAttribute("tableList", genTableService.findAll());

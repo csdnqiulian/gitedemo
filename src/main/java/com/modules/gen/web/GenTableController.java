@@ -25,7 +25,7 @@ import com.modules.gen.util.GenUtils;
 
 /**
  * 业务表Controller
- * @author ThinkGem
+ * @author admin
  * @version 2013-10-15
  */
 @Controller

@@ -22,7 +22,7 @@ import com.modules.gen.util.GenUtils;
 
 /**
  * 生成方案Service
- * @author ThinkGem
+ * @author admin
  * @version 2013-10-15
  */
 @Service

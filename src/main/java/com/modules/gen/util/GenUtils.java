@@ -35,7 +35,7 @@ import com.modules.sys.entity.User;
 
 /**
  * 代码生成工具类
- * @author ThinkGem
+ * @author admin
  * @version 2013-11-16
  */
 public class GenUtils {

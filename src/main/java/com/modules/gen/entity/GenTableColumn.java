@@ -10,7 +10,7 @@ import com.common.util.StringUtils;
 
 /**
  * 业务表字段Entity
- * @author ThinkGem
+ * @author admin
  * @version 2013-10-15
  */
 public class GenTableColumn extends DataEntity<GenTableColumn> {

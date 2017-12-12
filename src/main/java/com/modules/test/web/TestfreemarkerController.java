@@ -3,7 +3,6 @@ package com.modules.test.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +21,7 @@ import com.modules.test.service.TestfreemarkerService;
 /**
  * 测试Controller
  * @author admin
- * @version 2017-12-10
+ * @version 2017-12-12
  */
 @Controller
 @RequestMapping(value = "${adminPath}/test/testfreemarker")
@@ -43,7 +42,6 @@ public class TestfreemarkerController extends BaseController {
 		return entity;
 	}
 	
-	@RequiresPermissions("test:testfreemarker:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(Testfreemarker testfreemarker, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<Testfreemarker> page = testfreemarkerService.findPage(new Page<Testfreemarker>(request, response), testfreemarker); 
@@ -51,14 +49,12 @@ public class TestfreemarkerController extends BaseController {
 		return "modules/test/testfreemarkerList";
 	}
 
-	@RequiresPermissions("test:testfreemarker:view")
 	@RequestMapping(value = "form")
 	public String form(Testfreemarker testfreemarker, Model model) {
 		model.addAttribute("testfreemarker", testfreemarker);
 		return "modules/test/testfreemarkerForm";
 	}
 
-	@RequiresPermissions("test:testfreemarker:edit")
 	@RequestMapping(value = "save")
 	public String save(Testfreemarker testfreemarker, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, testfreemarker)){
@@ -69,7 +65,6 @@ public class TestfreemarkerController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/test/testfreemarker/?repage";
 	}
 	
-	@RequiresPermissions("test:testfreemarker:edit")
 	@RequestMapping(value = "delete")
 	public String delete(Testfreemarker testfreemarker, RedirectAttributes redirectAttributes) {
 		testfreemarkerService.delete(testfreemarker);

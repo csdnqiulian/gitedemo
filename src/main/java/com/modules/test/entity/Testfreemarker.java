@@ -7,7 +7,7 @@ import com.common.persistence.DataEntity;
 /**
  * 测试Entity
  * @author admin
- * @version 2017-12-10
+ * @version 2017-12-12
  */
 public class Testfreemarker extends DataEntity<Testfreemarker> {
 	

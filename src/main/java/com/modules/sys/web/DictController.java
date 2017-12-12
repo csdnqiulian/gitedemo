@@ -66,10 +66,6 @@ public class DictController extends BaseController {
 	@RequiresPermissions("sys:dict:edit")
 	@RequestMapping(value = "save")//@Valid 
 	public String save(Dict dict, Model model, RedirectAttributes redirectAttributes) {
-		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:" + adminPath + "/sys/dict/?repage&type="+dict.getType();
-		}
 		if (!beanValidator(model, dict)){
 			return form(dict, model);
 		}
@@ -81,10 +77,6 @@ public class DictController extends BaseController {
 	@RequiresPermissions("sys:dict:edit")
 	@RequestMapping(value = "delete")
 	public String delete(Dict dict, RedirectAttributes redirectAttributes) {
-		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:" + adminPath + "/sys/dict/?repage";
-		}
 		dictService.delete(dict);
 		addMessage(redirectAttributes, "删除字典成功");
 		return "redirect:" + adminPath + "/sys/dict/?repage&type="+dict.getType();

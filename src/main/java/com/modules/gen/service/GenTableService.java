@@ -18,7 +18,7 @@ import com.modules.gen.dao.GenTableDao;
 
 /**
  * 业务表Service
- * @author ThinkGem
+ * @author admin
  * @version 2013-10-15
  */
 @Service

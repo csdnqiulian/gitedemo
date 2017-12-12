@@ -81,10 +81,6 @@ public class MenuController extends BaseController {
 			addMessage(redirectAttributes, "越权操作，只有超级管理员才能添加或修改数据！");
 			return "redirect:" + adminPath + "/sys/role/?repage";
 		}
-		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:" + adminPath + "/sys/menu/";
-		}
 		if (!beanValidator(model, menu)){
 			return form(menu, model);
 		}
@@ -96,11 +92,6 @@ public class MenuController extends BaseController {
 	@RequiresPermissions("sys:menu:edit")
 	@RequestMapping(value = "delete")
 	public String delete(Menu menu, RedirectAttributes redirectAttributes) {
-		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:" + adminPath + "/sys/menu/";
-		}
-
 		systemService.deleteMenu(menu);
 		addMessage(redirectAttributes, "删除菜单成功");
 		return "redirect:" + adminPath + "/sys/menu/";
@@ -125,10 +116,6 @@ public class MenuController extends BaseController {
 	@RequiresPermissions("sys:menu:edit")
 	@RequestMapping(value = "updateSort")
 	public String updateSort(String[] ids, Integer[] sorts, RedirectAttributes redirectAttributes) {
-		if(Global.isDemoMode()){
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
-			return "redirect:" + adminPath + "/sys/menu/";
-		}
     	for (int i = 0; i < ids.length; i++) {
     		Menu menu = new Menu(ids[i]);
     		menu.setSort(sorts[i]);

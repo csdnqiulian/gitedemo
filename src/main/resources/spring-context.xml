@@ -64,7 +64,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="typeAliasesPackage" value="com"/>
         <property name="typeAliasesSuperType" value="com.common.persistence.BaseEntity"/>
-        <property name="mapperLocations" value="classpath:/modules/**/*.xml"/>
+        <property name="mapperLocations" value="classpath:/mappings/**/*.xml"/>
         <property name="configLocation" value="classpath:/mybatis-config.xml"></property>
     </bean>
     <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->

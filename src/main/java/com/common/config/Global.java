@@ -94,13 +94,6 @@ public class Global {
 		return getConfig("urlSuffix");
 	}
 	
-	/**
-	 * 是否是演示模式，演示模式下不能修改用户、角色、密码、菜单、授权
-	 */
-	public static Boolean isDemoMode() {
-		String dm = getConfig("demoMode");
-		return "true".equals(dm) || "1".equals(dm);
-	}
 	
 	/**
 	 * 在修改系统用户和角色时是否同步到Activiti

@@ -11,7 +11,7 @@ import com.modules.sys.entity.Dict;
 
 /**
  * 生成方案Entity
- * @author ThinkGem
+ * @author admin
  * @version 2013-10-15
  */
 @XmlRootElement(name="config")

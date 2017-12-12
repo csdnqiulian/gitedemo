@@ -6,7 +6,7 @@ import com.modules.gen.entity.GenTemplate;
 
 /**
  * 代码模板DAO接口
- * @author ThinkGem
+ * @author admin
  * @version 2013-10-15
  */
 @MyBatisDao

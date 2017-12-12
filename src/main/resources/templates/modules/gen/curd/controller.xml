@@ -49,7 +49,6 @@ public class ${ClassName}Controller extends BaseController {
 		return entity;
 	}
 	
-	@RequiresPermissions("${permissionPrefix}:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(${ClassName} ${className}, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<${ClassName}> page = ${className}Service.findPage(new Page<${ClassName}>(request, response), ${className}); 
@@ -57,14 +56,12 @@ public class ${ClassName}Controller extends BaseController {
 		return "${lastPackageName}/${viewPrefix}List";
 	}
 
-	@RequiresPermissions("${permissionPrefix}:view")
 	@RequestMapping(value = "form")
 	public String form(${ClassName} ${className}, Model model) {
 		model.addAttribute("${className}", ${className});
 		return "${lastPackageName}/${viewPrefix}Form";
 	}
 
-	@RequiresPermissions("${permissionPrefix}:edit")
 	@RequestMapping(value = "save")
 	public String save(${ClassName} ${className}, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, ${className})){
@@ -75,7 +72,6 @@ public class ${ClassName}Controller extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/?repage";
 	}
 	
-	@RequiresPermissions("${permissionPrefix}:edit")
 	@RequestMapping(value = "delete")
 	public String delete(${ClassName} ${className}, RedirectAttributes redirectAttributes) {
 		${className}Service.delete(${className});
