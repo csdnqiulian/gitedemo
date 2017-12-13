@@ -21,6 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.common.beanvalidator.BeanValidators;
 import com.common.config.Global;
+import com.common.excel.ExportExcel;
+import com.common.excel.ImportExcel;
 import com.common.persistence.Page;
 import com.common.util.DateUtils;
 import com.common.util.StringUtils;
@@ -155,6 +157,7 @@ public class UserController extends BaseController {
 		try {
             String fileName = "用户数据"+DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
             Page<User> page = systemService.findUser(new Page<User>(request, response, -1), user);
+    		new ExportExcel("用户数据", User.class).setDataList(page.getList()).write(response, fileName).dispose();
     		return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出用户失败！失败信息："+e.getMessage());
@@ -175,7 +178,7 @@ public class UserController extends BaseController {
 			int successNum = 0;
 			int failureNum = 0;
 			StringBuilder failureMsg = new StringBuilder();
-			/*ImportExcel ei = new ImportExcel(file, 1, 0);
+			ImportExcel ei = new ImportExcel(file, 1, 0);
 			List<User> list = ei.getDataList(User.class);
 			for (User user : list){
 				try{
@@ -201,7 +204,7 @@ public class UserController extends BaseController {
 			}
 			if (failureNum>0){
 				failureMsg.insert(0, "，失败 "+failureNum+" 条用户，导入信息如下：");
-			}*/
+			}
 			addMessage(redirectAttributes, "已成功导入 "+successNum+" 条用户"+failureMsg);
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入用户失败！失败信息："+e.getMessage());
@@ -221,7 +224,7 @@ public class UserController extends BaseController {
 		try {
             String fileName = "用户数据导入模板.xlsx";
     		List<User> list = Lists.newArrayList(); list.add(UserUtils.getUser());
-    		//new ExportExcel("用户数据", User.class, 2).setDataList(list).write(response, fileName).dispose();
+    		new ExportExcel("用户数据", User.class, 2).setDataList(list).write(response, fileName).dispose();
     		return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入模板下载失败！失败信息："+e.getMessage());

@@ -1,6 +1,3 @@
-/**
- * Copyright (c) 2005-2012 springside.org.cn
- */
 package com.common.util;
 
 import java.io.PrintWriter;

@@ -77,5 +77,9 @@
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/asm-4.2.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/cglib-3.1.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/mybatis-3.2.8.jar" sourcepath="E:/maven_lib/org/mybatis/mybatis/3.2.8/mybatis-3.2.8-sources.jar"/>
+	<classpathentry kind="lib" path="webapp/WEB-INF/lib/freemarker-2.3.20.jar"/>
+	<classpathentry kind="lib" path="webapp/WEB-INF/lib/poi-3.9.jar"/>
+	<classpathentry kind="lib" path="webapp/WEB-INF/lib/poi-ooxml-3.9.jar"/>
+	<classpathentry kind="lib" path="webapp/WEB-INF/lib/poi-ooxml-schemas-3.9.jar"/>
 	<classpathentry kind="output" path="webapp/WEB-INF/classes"/>
 </classpath>

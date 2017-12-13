@@ -196,8 +196,7 @@
 	</insert>
 	
 	<update id="delete">
-		UPDATE sys_role SET 
-			del_flag = #{DEL_FLAG_DELETE}
+		delete from sys_role
 		WHERE id = #{id}
 	</update>
 	
