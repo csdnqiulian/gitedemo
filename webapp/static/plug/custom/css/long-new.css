@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* CSS Document */
+.error-box{float:left; background:#fafafa;border:#e6e6e6 solid 1px; width:100%; padding-bottom:40px;}
+.error-top{margin-top: 30px;font-size:28px;color: #000;border-bottom:#e4e4e4 solid 1px;padding-bottom: 20px;margin-left: 2%;width: 96%;}
+.error-font{float:left;font-size:16px;margin-left: 4%;width: 92%;color:#666;margin-top: 20px;}
+.error-search{float:left; width:96%;margin-left: 4%;width: 92%;margin-top:20px;}
+.search-intput{float:left;width: 300px;height: 35px;line-height: 35px;border: #e2e1e1 solid 1px;}
+.search-an{float:left;background: #478fca;width: 50px;height: 35px;line-height: 32px;text-align: center;color: #fff; font-size:20px;}
+.search-anan1{float:left; width:92%; margin-left:4%; margin-top:40px;}
+.search-anan-one{float: left;margin-right:10px;color:#fff;font-size: 16px;border-radius: 3px; text-decoration:none; color:#fff;width: 120px;text-align: center;height: 45px;line-height: 45px;}
+.search-anan-two{background:#abbac3;border:##9da5ab solid 1px;}
+.search-anan-three{background:#428bca; border:#3677af solid 1px;}
+.search-anan-two:hover{background:#8b9aa3; text-decoration:none; color:#fff;}
+.search-anan-three:hover{background:#1b6aaa; text-decoration:none; color:#fff;}

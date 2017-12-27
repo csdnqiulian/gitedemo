@@ -1,0 +1,29 @@
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
+	font-family: Microsoft YaHei, '宋体', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+}
+
+.ui-jqgrid tr.jqgrow td   
+{  
+    /* jqGrid cell content wrap  */  
+    white-space: normal !important;  
+        height :auto;  
+}  
+  
+th.ui-th-column div  
+{  
+    /* jqGrid columns name wrap  */  
+    white-space:normal !important;  
+    height:auto !important;  
+    padding:0px;  
+}
+
+.ui-jqgrid .ui-jqgrid-sortable {
+	text-align:center;
+}
+#gritter-notice-wrapper {
+	top:60px;
+}
+
+.ui-jqgrid-bdiv { 
+		overflow-x: hidden !important;
+}

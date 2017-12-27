@@ -1,0 +1,76 @@
+{
+	"button": [{
+		"name": "魅力望城坡",
+		"sub_button": [{
+			"type": "view",
+			"name": "党的建设",
+			"url": "http://path/wechatContent_partybuilding.do"
+		},
+		{
+			"type": "view",
+			"name": "群众监督",
+			"url": "http://path/wechatContent_supervise_list.do?type=618"
+		},
+		{
+			"type": "view",
+			"name": "信息公开",
+			"url": "http://path/wechatContent_wcpmessage.do?moduleName=wcpmessage"
+		},
+		{
+			"type": "view",
+			"name": "文明创建",
+			"url": "http://path/wechatContent_typeList.do?type=621"
+		},
+		{
+			"type":"view",
+			"name": "工作动态",
+			"url":"http://path/wechatContent_typeList.do?type=67&new_type=25"
+		}]
+	},
+	{
+		"name": "效率望城坡",
+		"sub_button": [{
+			"type": "view",
+			"name": "政策法规",
+			"url": "http://path/wechatContent_bsznment.do"
+		},
+		{
+			"type": "view",
+			"name": "产业招商",
+			"url": "http://path/wechatContent_typeList.do?type=903&new_type=4"
+		},
+		{
+			"type": "view",
+			"name": "四大机制",
+			"url": "http://path/wechatContent_fourmechanisms.do"
+		}]
+	},
+	{
+		"name": "幸福望城坡",
+		"sub_button": [{
+			"type": "view",
+			"name": "品质出行",
+			"url": "http://path/wechatContent_yszxmessage.do"
+		},
+		{
+			"type": "view",
+			"name": "幸福生活",
+			"url": "http://path/wechatContent_convenientLife.do"
+		},
+		{
+			"type": "view",
+			"name": "咨询服务",
+			"url": "http://path/wechatBuss_convenquery.do"
+		},
+		{
+			"type": "view",
+			"name": "客户端下载",
+			"url": "http://path/wechatBuss_appdownload.do"
+		},
+		{
+			"type": "view",
+			"name": "个人中心",
+			"url": "http://path/wechatUserAllInfo_getopenidtouserinfo.do"
+		}]
+	}]
+}
