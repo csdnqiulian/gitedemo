@@ -31,10 +31,11 @@
 	</script>
 </head>
 <body>
-	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/sys/user/info">个人信息</a></li>
-		<li class="active"><a href="${ctx}/sys/user/modifyPwd">修改密码</a></li>
-	</ul><br/>
+	<div class="page-header">
+		<h5>
+	   		修改密码
+		</h5>
+	</div>
 	<form:form id="inputForm" modelAttribute="user" action="${ctx}/sys/user/modifyPwd" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>

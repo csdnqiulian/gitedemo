@@ -1,5 +1,6 @@
 package com.modules.sys.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -26,6 +27,8 @@ public class Menu extends DataEntity<Menu> {
 	private String permission; // 权限标识
 	
 	private String userId;
+	
+	private List<Menu> subMenuList = new ArrayList<Menu>();//子菜单集合
 	
 	public Menu(){
 		super();
@@ -161,5 +164,17 @@ public class Menu extends DataEntity<Menu> {
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	public List<Menu> getSubMenuList() {
+		return subMenuList;
+	}
+
+	public void addSubMenuList(Menu menu) {
+		subMenuList.add(menu);
+	}
+	
+	public void reMoveSubMenuList(){
+		subMenuList.clear();
 	}
 }

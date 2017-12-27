@@ -5,7 +5,8 @@
 	<sql id="testfreemarkerColumns">
 		a.id AS "id",
 		a.name AS "name",
-		a.remark AS "remark"
+		a.remark AS "remark",
+		a.imageSrc as "imageSrc"
 	</sql>
 	
 	<sql id="testfreemarkerJoins">
@@ -57,18 +58,21 @@
 		INSERT INTO testfreemarker(
 			id,
 			name,
-			remark
+			remark,
+			imageSrc
 		) VALUES (
 			#{id},
 			#{name},
-			#{remark}
+			#{remark},
+			#{imageSrc}
 		)
 	</insert>
 	
 	<update id="update">
 		UPDATE testfreemarker SET 	
 			name = #{name},
-			remark = #{remark}
+			remark = #{remark},
+			imageSrc = #{imageSrc}
 		WHERE id = #{id}
 	</update>
 	

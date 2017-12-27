@@ -14,6 +14,7 @@ public class Testfreemarker extends DataEntity<Testfreemarker> {
 	private static final long serialVersionUID = 1L;
 	private String name;		// 名字
 	private String remark;		// 备注
+	private String imageSrc;	//图片路径
 	
 	public Testfreemarker() {
 		super();
@@ -32,7 +33,6 @@ public class Testfreemarker extends DataEntity<Testfreemarker> {
 		this.name = name;
 	}
 	
-	@Length(min=0, max=100, message="备注长度必须介于 0 和 100 之间")
 	public String getRemark() {
 		return remark;
 	}
@@ -40,5 +40,12 @@ public class Testfreemarker extends DataEntity<Testfreemarker> {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
+
+	public String getImageSrc() {
+		return imageSrc;
+	}
+
+	public void setImageSrc(String imageSrc) {
+		this.imageSrc = imageSrc;
+	}
 }

@@ -2,9 +2,6 @@ package com.modules.weixin.bean.message.req;
 
 /**
  * 消息基类（普通用户 -> 公众帐号）
- * 
- * @author 捷微团队
- * @date 2013-05-19
  */
 public class BaseMessage {
 	// 开发者微信号

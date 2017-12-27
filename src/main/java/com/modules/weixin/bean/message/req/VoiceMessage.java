@@ -2,9 +2,6 @@ package com.modules.weixin.bean.message.req;
 
 /**
  * 音频消息
- * 
- * @author 捷微团队
- * @date 2013-05-19
  */
 public class VoiceMessage extends BaseMessage {
 	// 媒体ID

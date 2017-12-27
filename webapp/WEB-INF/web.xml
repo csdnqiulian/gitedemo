@@ -93,6 +93,24 @@
 		<servlet-name>DruidStatView</servlet-name>
 		<url-pattern>/druid/*</url-pattern>
 	</servlet-mapping>
+	<servlet>
+   		<servlet-name>initwechat</servlet-name>
+    	<servlet-class>com.modules.weixin.servlet.InitwechatServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>initwechat</servlet-name>
+   	 	<url-pattern>/weixin/initwechat</url-pattern>
+ 	</servlet-mapping>
+ 	<!-- 附件上传 start -->
+ 	<servlet>
+		<servlet-name>FineUploadServlet</servlet-name>
+		<servlet-class>com.common.servlet.FineUploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FineUploadServlet</servlet-name>
+		<url-pattern>/FineUpload</url-pattern>
+	</servlet-mapping>
+ 	<!-- 附件上传 end -->
 	<error-page>
 		<error-code>500</error-code>
 		<location>/WEB-INF/views/error/500.jsp</location>

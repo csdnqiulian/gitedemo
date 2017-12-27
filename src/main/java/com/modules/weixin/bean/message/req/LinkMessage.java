@@ -2,9 +2,6 @@ package com.modules.weixin.bean.message.req;
 
 /**
  * 链接消息
- * 
- * @author 捷微团队
- * @date 2013-05-19
  */
 public class LinkMessage extends BaseMessage {
 	// 消息标题

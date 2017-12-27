@@ -2,8 +2,6 @@ package com.modules.weixin.bean.message.req;
 
 /**
  * 文本消息
- * 
- * @author 捷微团队
  * @date 2013-05-19
  */
 public class TextMessage extends BaseMessage {

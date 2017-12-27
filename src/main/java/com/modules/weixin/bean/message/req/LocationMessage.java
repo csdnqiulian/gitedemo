@@ -2,9 +2,6 @@ package com.modules.weixin.bean.message.req;
 
 /**
  * 地理位置消息
- * 
- * @author 捷微团队
- * @date 2013-05-19
  */
 public class LocationMessage extends BaseMessage {
 	// 地理位置维度

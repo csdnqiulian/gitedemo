@@ -33,7 +33,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/gen/genTable/">业务表列表</a></li>
-		<li class="active"><a href="${ctx}/gen/genTable/form?id=${genTable.id}&name=${genTable.name}">业务表<shiro:hasPermission name="gen:genTable:edit">${not empty genTable.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="gen:genTable:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active"><a href="${ctx}/gen/genTable/form?id=${genTable.id}&name=${genTable.name}">业务表${not empty genTable.id?'修改':'添加'}</a></li>
 	</ul>
 	<c:choose>
 		<c:when test="${empty genTable.name}">
@@ -179,7 +179,7 @@
 					</div>
 				</fieldset>
 				<div class="form-actions">
-					<shiro:hasPermission name="gen:genTable:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
+					<input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;
 					<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 				</div>
 			</form:form>

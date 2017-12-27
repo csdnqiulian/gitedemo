@@ -3,6 +3,7 @@ package com.modules.test.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,6 +58,8 @@ public class TestfreemarkerController extends BaseController {
 
 	@RequestMapping(value = "save")
 	public String save(Testfreemarker testfreemarker, Model model, RedirectAttributes redirectAttributes) {
+		String remark = testfreemarker.getRemark();
+		testfreemarker.setRemark(StringEscapeUtils.unescapeHtml4(remark));
 		if (!beanValidator(model, testfreemarker)){
 			return form(testfreemarker, model);
 		}

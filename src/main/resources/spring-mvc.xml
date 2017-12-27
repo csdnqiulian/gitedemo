@@ -32,7 +32,7 @@
                     <bean class="com.common.mapper.JsonMapper"></bean>  
                 </property> 
             </bean>
-            <!-- 使用XML格式输出数据 -->
+           <!--  使用XML格式输出数据 -->
             <bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
 		        <constructor-arg>
 		        	<bean class="org.springframework.oxm.xstream.XStreamMarshaller">
@@ -49,7 +49,7 @@
 		        <property name="supportedMediaTypes" value="application/xml"></property>
 			</bean>
 		</mvc:message-converters>
-	</mvc:annotation-driven>
+	</mvc:annotation-driven> 
 	 <!-- REST中根据URL后缀自动判定Content-Type及相应的View -->
 	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 	    <property name="mediaTypes" >

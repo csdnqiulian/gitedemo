@@ -17,15 +17,12 @@
 	</script>
 </head>
 <body>
-	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/test/testfreemarker/">测试成才列表</a></li>
-		<li><a href="${ctx}/test/testfreemarker/form">测试成才添加</a></li>
-	</ul>
 	<form:form id="searchForm" modelAttribute="testfreemarker" action="${ctx}/test/testfreemarker/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="添加"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>

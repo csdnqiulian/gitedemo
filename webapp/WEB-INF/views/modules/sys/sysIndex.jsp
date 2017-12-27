@@ -1,246 +1,478 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.common.util.MenuTreeUtil"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.modules.sys.entity.Menu"%>
+<%@page import="java.util.List"%>
+<%@page import="com.common.util.UserUtils"%>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<%
+	List<Menu> menuList = new ArrayList<Menu>();
+	List<Menu> menuBeanList = UserUtils.getMenuList();
+	if(menuBeanList != null){
+		for(Menu bean : menuBeanList){
+			Menu menuBean = new Menu();
+			menuBean.setIcon(bean.getIcon());
+			menuBean.setId(bean.getId());
+			menuBean.setName(bean.getName());
+			menuBean.setTarget(bean.getTarget());
+			menuBean.setHref(bean.getHref());
+			menuBean.setIsShow(bean.getIsShow());
+			Menu parentMenu = new Menu();
+			if(bean.getParent()!=null){
+				parentMenu  = bean.getParent();
+			} 
+			menuBean.setParent(parentMenu);
+			menuList.add(menuBean);
+		}
+	}
+	MenuTreeUtil menuTreeUtil = new MenuTreeUtil();
+    menuList = menuTreeUtil.buildMenuTree(menuList);
+%>
+<!DOCTYPE html>
 <html>
-<head>
-	<title>${fns:getConfig('productName')}</title>
-	<meta name="decorator" content="blank"/><c:set var="tabmode" value="${empty cookie.tabmode.value ? '0' : cookie.tabmode.value}"/>
-    <c:if test="${tabmode eq '1'}"><link rel="Stylesheet" href="${ctxStatic}/plug/jerichotab/css/jquery.jerichotab.css" />
-    <script type="text/javascript" src="${ctxStatic}/plug/jerichotab/js/jquery.jerichotab.js"></script></c:if>
-	<style type="text/css">
-		#main {padding:0;margin:0;} #main .container-fluid{padding:0 4px 0 6px;}
-		#header {margin:0 0 8px;position:static;} #header li {font-size:14px;_font-size:12px;}
-		#header .brand {font-family:Helvetica, Georgia, Arial, sans-serif, 黑体;font-size:26px;padding-left:33px;}
-		#footer {margin:8px 0 0 0;padding:3px 0 0 0;font-size:11px;text-align:center;border-top:2px solid #0663A2;}
-		#footer, #footer a {color:#999;} #left{overflow-x:hidden;overflow-y:auto;} #left .collapse{position:static;}
-		#userControl>li>a{/*color:#fff;*/text-shadow:none;} #userControl>li>a:hover, #user #userControl>li.open>a{background:transparent;}
-	</style>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			// <c:if test="${tabmode eq '1'}"> 初始化页签
-			$.fn.initJerichoTab({
-                renderTo: '#right', uniqueId: 'jerichotab',
-                contentCss: { 'height': $('#right').height() - tabTitleHeight },
-                tabs: [], loadOnce: true, tabWidth: 110, titleHeight: tabTitleHeight
-            });//</c:if>
-			// 绑定菜单单击事件
-			$("#menu a.menu").click(function(){
-				// 一级菜单焦点
-				$("#menu li.menu").removeClass("active");
-				$(this).parent().addClass("active");
-				// 左侧区域隐藏
-				if ($(this).attr("target") == "mainFrame"){
-					$("#left,#openClose").hide();
-					wSizeWidth();
-					// <c:if test="${tabmode eq '1'}"> 隐藏页签
-					$(".jericho_tab").hide();
-					$("#mainFrame").show();//</c:if>
-					return true;
+	<head>
+		<meta charset="utf-8" />
+		<title>${fns:getConfig('productName')}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="${ctxStatic}/plug/ace/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="${ctxStatic}/plug/ace/assets/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="${ctxStatic}/plug/ace/assets/css/jquery.gritter.css" />
+		<!-- ace styles -->
+		<link rel="stylesheet" href="${ctxStatic}/plug/ace/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="${ctxStatic}/plug/ace/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="${ctxStatic}/plug/ace/assets/css/ace-skins.min.css" />
+		<!-- 自定义 styles -->
+		<link rel="stylesheet" href="${ctxStatic}/plug/custom/css/main.css" />
+		<!-- basic scripts -->
+		<!--[if IE]>
+		<script src="resources/ace/assets/js/jquery-1.10.2.min.js"></script>
+		<![endif]-->
+		<!--[if !IE]> -->
+		<script src="${ctxStatic}/plug/ace/assets/js/jquery-2.0.3.min.js"></script>
+		<!-- <![endif]-->
+		<script src="${ctxStatic}/plug/ace/assets/js/bootstrap.min.js"></script>
+		<script src="${ctxStatic}/plug/ace/assets/js/bootbox.min.js"></script>
+		<script src="${ctxStatic}/plug/ace/assets/js/ace.min.js"></script>
+		<script src="${ctxStatic}/plug/ace/assets/js/ace-extra.min.js"></script>
+		<script src="${ctxStatic}/plug/ace/assets/js/typeahead-bs2.min.js"></script>
+		<script src="${ctxStatic}/plug/ace/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+
+		<!-- ace scripts -->
+		<script src="${ctxStatic}/plug/ace/assets/js/ace-elements.min.js"></script>
+		<script src="${ctxStatic}/plug/ace/assets/js/jquery.gritter.min.js"></script>
+		<script src="${ctxStatic}/plug/custom/js/model.js"></script>
+		<script src="${ctxStatic}/plug/custom/js/progress.js"></script>
+
+		<script type="text/javascript">
+			function iFrameHeight() {
+				debugger;
+				var ifm = document.getElementById("iframepage"); 
+				try{
+					ifm.scrolling = "no";
+		        	var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;   
+		        	if(ifm != null && subWeb != null) {
+		        	   ifm.height = subWeb.body.scrollHeight;
+		        	}   
+				}catch(e){//跨域的情况下
+					ifm.height = "510";
+					ifm.scrolling = "yes";
 				}
-				// 左侧区域显示
-				$("#left,#openClose").show();
-				if(!$("#openClose").hasClass("close")){
-					$("#openClose").click();
-				}
-				// 显示二级菜单
-				var menuId = "#menu-" + $(this).attr("data-id");
-				if ($(menuId).length > 0){
-					$("#left .accordion").hide();
-					$(menuId).show();
-					// 初始化点击第一个二级菜单
-					if (!$(menuId + " .accordion-body:first").hasClass('in')){
-						$(menuId + " .accordion-heading:first a").click();
-					}
-					if (!$(menuId + " .accordion-body li:first ul:first").is(":visible")){
-						$(menuId + " .accordion-body a:first i").click();
-					}
-					// 初始化点击第一个三级菜单
-					$(menuId + " .accordion-body li:first li:first a:first i").click();
-				}else{
-					// 获取二级菜单数据
-					$.get($(this).attr("data-href"), function(data){
-						if (data.indexOf("id=\"loginForm\"") != -1){
-							alert('未登录或登录超时。请重新登录，谢谢！');
-							top.location = "${ctx}";
-							return false;
-						}
-						$("#left .accordion").hide();
-						$("#left").append(data);
-						// 链接去掉虚框
-						$(menuId + " a").bind("focus",function() {
-							if(this.blur) {this.blur()};
-						});
-						// 二级标题
-						$(menuId + " .accordion-heading a").click(function(){
-							$(menuId + " .accordion-toggle i").removeClass('icon-chevron-down').addClass('icon-chevron-right');
-							if(!$($(this).attr('data-href')).hasClass('in')){
-								$(this).children("i").removeClass('icon-chevron-right').addClass('icon-chevron-down');
-							}
-						});
-						// 二级内容
-						$(menuId + " .accordion-body a").click(function(){
-							$(menuId + " li").removeClass("active");
-							$(menuId + " li i").removeClass("icon-white");
-							$(this).parent().addClass("active");
-							$(this).children("i").addClass("icon-white");
-						});
-						// 展现三级
-						$(menuId + " .accordion-inner a").click(function(){
-							var href = $(this).attr("data-href");
-							if($(href).length > 0){
-								$(href).toggle().parent().toggle();
-								return false;
-							}
-							// <c:if test="${tabmode eq '1'}"> 打开显示页签
-							return addTab($(this)); // </c:if>
-						});
-						// 默认选中第一个菜单
-						$(menuId + " .accordion-body a:first i").click();
-						$(menuId + " .accordion-body li:first li:first a:first i").click();
-					});
-				}
-				// 大小宽度调整
-				wSizeWidth();
-				return false;
+	        	
+	       	}
+			var jqgridheight = "";
+			$(function(){
+				jqgridheight = $(window).innerHeight();//窗口的文档显示区的高度
 			});
-			// 初始化点击第一个一级菜单
-			$("#menu a.menu:first span").click();
-			// <c:if test="${tabmode eq '1'}"> 下拉菜单以选项卡方式打开
-			$("#userInfo .dropdown-menu a").mouseup(function(){
-				return addTab($(this), true);
-			});// </c:if>
-			// 鼠标移动到边界自动弹出左侧菜单
-			$("#openClose").mouseover(function(){
-				if($(this).hasClass("open")){
-					$(this).click();
+			function menuClick(url,menu_names,activeId,parent_activeId,parent_parent_activeId,parent_parent_parent_activeId){
+				if(typeof(url) != "undefined" && url != null && url != "" && url != "null"){
+					$('#iframepage').attr("src",url);
+		        	if(menu_names != ''){
+		        		$("#breadcrumb").empty(); //删除所有li
+		        		var innerHtml = "<li><i class=\"icon-home home-icon\"></i>"+
+		        			"<a href=\"${ctx}/sys/user/innerindex\">首页</a></li>";
+		                var menu_name_arr = menu_names.split("|");
+		        		for (var i=0,len=menu_name_arr.length; i<len; i++){
+		                	if(i == len-1){
+		                		innerHtml = innerHtml + "<li class='active'>"+menu_name_arr[i]+"</li>";
+		                	}else{
+		                		innerHtml = innerHtml + "<li><a href='#'>"+menu_name_arr[i]+"</a></li>";
+		                	}
+		        		}
+		        		$("#breadcrumb").append(innerHtml);
+		        	}
 				}
-			});
-		});
-		// <c:if test="${tabmode eq '1'}"> 添加一个页签
-		function addTab($this, refresh){
-			$(".jericho_tab").show();
-			$("#mainFrame").hide();
-			$.fn.jerichoTab.addTab({
-                tabFirer: $this,
-                title: $this.text(),
-                closeable: true,
-                data: {
-                    dataType: 'iframe',
-                    dataLink: $this.attr('href')
-                }
-            }).loadData(refresh);
-			return false;
-		}// </c:if>
-	</script>
-</head>
-<body>
-	<div id="main">
-		<div id="header" class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="brand"><span id="productName">${fns:getConfig('productName')}</span></div>
-				<ul id="userControl" class="nav pull-right">
-					<li><a href="${pageContext.request.contextPath}${fns:getFrontPath()}/index-${fnc:getCurrentSiteId()}.html" target="_blank" title="访问网站主页"><i class="icon-home"></i></a></li>
-					<li id="themeSwitch" class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="主题切换"><i class="icon-th-large"></i></a>
-						<ul class="dropdown-menu">
-							<c:forEach items="${fns:getDictList('theme')}" var="dict"><li><a href="#" onclick="location='${pageContext.request.contextPath}/theme/${dict.value}?url='+location.href">${dict.label}</a></li></c:forEach>
-							<li><a href="javascript:cookie('tabmode','${tabmode eq '1' ? '0' : '1'}');location=location.href">${tabmode eq '1' ? '关闭' : '开启'}页签模式</a></li>
-						</ul>
-						<!--[if lte IE 6]><script type="text/javascript">$('#themeSwitch').hide();</script><![endif]-->
-					</li>
-					<li id="userInfo" class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="个人信息">您好, ${fns:getUser().name}&nbsp;<span id="notifyNum" class="label label-info hide"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="${ctx}/sys/user/info" target="mainFrame"><i class="icon-user"></i>&nbsp; 个人信息</a></li>
-							<li><a href="${ctx}/sys/user/modifyPwd" target="mainFrame"><i class="icon-lock"></i>&nbsp;  修改密码</a></li>
-							<li><a href="${ctx}/oa/oaNotify/self" target="mainFrame"><i class="icon-bell"></i>&nbsp;  我的通知 <span id="notifyNum2" class="label label-info hide"></span></a></li>
-						</ul>
-					</li>
-					<li><a href="${ctx}/logout" title="退出登录">退出</a></li>
-					<li>&nbsp;</li>
-				</ul>
-				<%-- <c:if test="${cookie.theme.value eq 'cerulean'}">
-					<div id="user" style="position:absolute;top:0;right:0;"></div>
-					<div id="logo" style="background:url(${ctxStatic}/images/logo_bg.jpg) right repeat-x;width:100%;">
-						<div style="background:url(${ctxStatic}/images/logo.jpg) left no-repeat;width:100%;height:70px;"></div>
-					</div>
-					<script type="text/javascript">
-						$("#productName").hide();$("#user").html($("#userControl"));$("#header").prepend($("#user, #logo"));
-					</script>
-				</c:if> --%>
-				<div class="nav-collapse">
-					<ul id="menu" class="nav" style="*white-space:nowrap;float:none;">
-						<c:set var="firstMenu" value="true"/>
-						<c:forEach items="${fns:getMenuList()}" var="menu" varStatus="idxStatus">
-							<c:if test="${menu.parent.id eq '1'&&menu.isShow eq '1'}">
-								<li class="menu ${not empty firstMenu && firstMenu ? ' active' : ''}">
-									<c:if test="${empty menu.href}">
-										<a class="menu" href="javascript:" data-href="${ctx}/sys/menu/tree?parentId=${menu.id}" data-id="${menu.id}"><span>${menu.name}</span></a>
-									</c:if>
-									<c:if test="${not empty menu.href}">
-										<a class="menu" href="${fn:indexOf(menu.href, '://') eq -1 ? ctx : ''}${menu.href}" data-id="${menu.id}" target="mainFrame"><span>${menu.name}</span></a>
-									</c:if>
+				try{
+					$('.active').each(function(){
+						$(this).removeClass("active");
+					 });
+				}catch(e){}
+				$('#'+parent_parent_parent_activeId).addClass("active");
+				$('#'+parent_parent_activeId).addClass("active");
+				$('#'+parent_activeId).addClass("active");
+				$('#'+activeId).addClass("active");
+	        }
+			
+			/*  function savepwd(){
+				var oldPassword = $('#oldPassword').val();
+				var newPassword = $('#newPassword').val();
+				var confirmNewPassword = $('#confirmNewPassword').val();
+				if(oldPassword == ""){
+					bootbox.alert("请输入新密码！");
+					return;
+				}
+				if(newPassword != confirmNewPassword){
+					bootbox.alert("两次密码不一致,请重新输入！");
+					return;
+				}
+				$.ajax({
+	        		url : "${ctx}/sys/user/modifyPwd.do?oldPassword="+oldPassword+"&newPassword="+newPassword",
+	        		type : 'POST',
+	        		dataType : 'text',
+	        		data : '',
+	        		success : function(result) {
+	        			var resultJson = JSON.parse(result);
+	        			if(resultJson.code == '0'){
+	        				$('#modal-form').modal('hide');
+	        				bootbox.alert({
+	        		            message: "密码修改成功，请重新登录！",  
+	        		            callback: function() {  
+	        		            	location.href = '${pageContext.request.contextPath}/logout.do';
+	        		            }
+	           				});
+	        			}else{
+	        				bootbox.alert("操作失败：【"+resultJson.description+"】");
+	        			}
+	        		},
+	        		error : function(jqXHR, textStatus, errorThrown) {
+	        			bootbox.alert(jqXHR+textStatus+errorThrown+ "发生异常，操作失败");
+	        		}
+	        	}); 
+			}  */
+			
+		</script>
+	</head>
+
+	<body>
+	<!-- start  必须建遮罩div pop1，弹出div pop2  -->
+	<div id="pop1" style="z-index:2147483646;background-color:#000 ;opacity:0.5;filter:alpha(opacity=50);width:100%;height:100%;position:absolute;left:0px;top:0px;display:none">   
+	</div>   
+	<div id="pop2" style="z-index:2147483647;background-size:auto;filter:alpha(opacity=80);left:35%;top:40%;width:450px;height:65px;display:none;position:absolute;text-align: center;">  
+		<div style="color:#FFFFFF" id="remindtitle">正在加载中，请稍后。。。</div>
+		<div class="progress progress-striped" data-percent="0%">
+		<div class="progress-bar progress-bar-success" style="z-index:2000;width: 0%;text-align: center;"></div>
+	</div>
+	</div>  
+	<!-- end -->
+		<div class="navbar navbar-default" id="navbar">
+			<script type="text/javascript">
+				try{ace.settings.check('navbar' , 'fixed');}catch(e){}
+			</script>
+
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="#" class="navbar-brand">
+						<small>
+						<i class="icon-windows"></i>
+							${fns:getConfig('productName')}
+						</small>
+					</a><!-- /.brand -->
+				</div><!-- /.navbar-header -->
+
+				<div class="navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+						<li class="light-blue">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<img class="nav-user-photo" src="${ctxStatic}/plug/ace/assets/avatars/avatar2.png" alt="Jason's Photo" />
+								<span class="user-info">
+									<small>欢迎光临,</small>
+										${fns:getUser().name}
+								</span>
+								<i class="icon-caret-down"></i>
+							</a>
+							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+								<!-- <li>
+									<a href="#control-panel" data-toggle="modal"><i class="icon-cog"></i>控制面板</a>
+								</li> -->
+							    <li>
+									<a href="#modal-form" data-toggle="modal"><i class="icon-key"></i>密码修改</a>
 								</li>
-								<c:if test="${firstMenu}">
-									<c:set var="firstMenuId" value="${menu.id}"/>
-								</c:if>
-								<c:set var="firstMenu" value="false"/>
-							</c:if>
-						</c:forEach><%--
-						<shiro:hasPermission name="cms:site:select">
-						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">${fnc:getSite(fnc:getCurrentSiteId()).name}<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<c:forEach items="${fnc:getSiteList()}" var="site"><li><a href="${ctx}/cms/site/select?id=${site.id}&flag=1">${site.name}</a></li></c:forEach>
+								<li class="divider"></li>
+								<li>
+									<a href="${ctx}/logout"><i class="icon-off"></i>退出</a>
+								</li>
 							</ul>
 						</li>
-						</shiro:hasPermission> --%>
-					</ul>
-				</div><!--/.nav-collapse -->
-			</div>
-	    </div>
-	    <div class="container-fluid">
-			<div id="content" class="row-fluid">
-				<div id="left"><%-- 
-					<iframe id="menuFrame" name="menuFrame" src="" style="overflow:visible;" scrolling="yes" frameborder="no" width="100%" height="650"></iframe> --%>
+					</ul><!-- /.ace-nav -->
+				</div><!-- /.navbar-header -->
+			</div><!-- /.container -->
+		</div>
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed');}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<div class="sidebar" id="sidebar">
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'fixed');}catch(e){}
+					</script>
+
+					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+						<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+							<button class="btn btn-success" onclick="location.reload();" title="首页">
+								<i class="icon-home  btn-lg no-padding no-margin"></i>
+							</button>
+
+							<button class="btn btn-info" onclick="" title="软件下载">
+								<i class="icon-download-alt  btn-lg no-padding no-margin"></i>
+							</button>
+
+							<button class="btn btn-warning" title="帮助">
+								<i class="icon-question-sign  btn-lg no-padding no-margin"></i>
+							</button>
+
+							<button class="btn btn-danger" href="#control-panel" data-toggle="modal" title="控制面板">
+								<i class="icon-cogs  btn-lg no-padding no-margin"></i>
+							</button>
+						</div>
+
+						<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+							<span class="btn btn-success"></span>
+
+							<span class="btn btn-info"></span>
+
+							<span class="btn btn-warning"></span>
+
+							<span class="btn btn-danger"></span>
+						</div>
+					</div><!-- #sidebar-shortcuts -->
+
+					<ul class="nav nav-list">
+						<%if(menuList != null) {
+				    		int i = 0;
+				    		for(Menu bean : menuList){
+				    			String menu_num = bean.getId();
+				    		%>
+				    			<%if(bean.getSubMenuList().size()>0){//第一级有子菜单 %>
+				    			<li id="li_<%=menu_num %>">
+					    			<a href="#<%=menu_num %>" class="dropdown-toggle" onclick="menuClick()">
+										<i class="<%=bean.getIcon() %>"></i>
+										<span class="menu-text"><%=bean.getName()%> </span>
+		
+										<b class="arrow icon-angle-down"></b>
+									</a>
+					    			<ul class="submenu">
+					    				<%for(Menu sub1bean : bean.getSubMenuList()){ %>
+					    					<%if(sub1bean.getSubMenuList().size() > 0) {//第二级有子菜单%>
+					    					<li id="li_<%=sub1bean.getId() %>">
+								    			<a href="#<%=sub1bean.getId() %>" class="dropdown-toggle">
+													<i class="<%=sub1bean.getIcon() %>"></i>
+													<span class="menu-text"><%=sub1bean.getName() %> </span>
+													<b class="arrow icon-angle-down"></b>
+												</a>
+								    			<ul class="submenu">
+								    				<%for(Menu sub2bean : sub1bean.getSubMenuList()){  %>
+								    					<%if(sub2bean.getSubMenuList().size() > 0) {//第三级有子菜单%>
+								    						<li id="li_<%=sub2bean.getId() %>">
+												    			<a href="#<%=sub2bean.getId() %>" class="dropdown-toggle">
+																	<i class="<%=sub2bean.getIcon() %>"></i>
+																	<span class="menu-text"><%=sub2bean.getName() %> </span>
+																	<b class="arrow icon-angle-down"></b>
+																</a>
+												    			<ul class="submenu">
+												    				<%for(Menu sub3bean : sub2bean.getSubMenuList()){  %>
+													    					<li id="li_<%=sub3bean.getId() %>">
+																				<a href="javascript:void(0)" onclick="menuClick('${ctx}<%=sub3bean.getHref()%>','<%=bean.getName() %>|<%=sub1bean.getName() %>|<%=sub2bean.getName() %>|<%=sub3bean.getName()%>','li_<%=sub3bean.getName() %>','li_<%=sub2bean.getName() %>','li_<%=sub1bean.getName() %>','li_<%=menu_num %>')">
+																					<i class="<%=sub3bean.getIcon() %>"></i>
+																					<%=sub3bean.getName() %>
+																				</a>
+																			</li>
+												    				<%} %>
+												    			</ul>
+												    		</li>
+								    					
+								    					<%}else{ %>
+								    				
+									    				 <li id="li_<%=sub2bean.getId() %>">
+																<a href="javascript:void(0)" onclick="menuClick('${ctx}<%=sub2bean.getHref() %>','<%=bean.getName() %>|<%=sub1bean.getName() %>|<%=sub2bean.getName()%>','li_<%=sub2bean.getId() %>','li_<%=sub1bean.getId() %>','li_<%=menu_num %>')">
+																	<i class="<%=sub2bean.getIcon() %>"></i>
+																	<%=sub2bean.getName() %>
+																</a>
+															</li>  
+								    				<%}} %>
+								    			</ul>
+								    		</li>
+					    				<%}else{ %>
+				    					  <li id="li_<%=sub1bean.getId() %>">
+											<a href="javascript:void(0)" onclick="menuClick('${ctx}<%=sub1bean.getHref() %>','<%=bean.getName() %>|<%=sub1bean.getName()%>','li_<%=sub1bean.getId() %>','li_<%=menu_num %>')">
+												<i class="<%=sub1bean.getIcon() %>"></i>
+												<%=sub1bean.getName() %>
+											</a>
+										</li> 
+										<%}
+					    			} %>
+									</ul>
+								</li>
+				    			<%}else{ //没有子菜单%>
+				    				  <li id="li_<%=bean.getId() %>">
+										<a href="javascript:void(0)" onclick="menuClick('${ctx}<%=bean.getHref() %>','<%=bean.getName() %>','li_<%=bean.getId() %>','li_<%=bean.getId() %>')">
+											<i class="<%=bean.getIcon() %>"></i>
+											<span class="menu-text"> <%=bean.getName() %> </span>
+										</a>
+									</li>  
+				    			<%} %>
+				    		<%i++;}
+				    	}%>
+					</ul><!-- /.nav-list -->
+
+					<div class="sidebar-collapse" id="sidebar-collapse">
+						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+					</div>
+
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'collapsed');}catch(e){}
+					</script>
 				</div>
-				<div id="openClose" class="close">&nbsp;</div>
-				<div id="right">
-					<iframe id="mainFrame" name="mainFrame" src="" style="overflow:visible;" scrolling="yes" frameborder="no" width="100%" height="650"></iframe>
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed');}catch(e){}
+						</script>
+
+						<ul class="breadcrumb" id="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="${ctxStatic}/sys/user/index">首页</a>
+							</li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+					<div class="page-content">
+						<!-- PAGE CONTENT BEGINS -->
+						<iframe id="iframepage" name="iframepage" width="100%" src="${ctx}/sys/user/innerindex"
+						onLoad="iFrameHeight()" frameborder="no" border="0" marginwidth="0" 
+						marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
+						<!-- PAGE CONTENT ENDS -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+				
+				  <div id="modal-form" class="modal" tabindex="-1">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header" style="background-color:#438eb9;color:#fff;">
+								<button type="button" style="color: #fff;opacity: 100;" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="white bigger">请输入新密码</h4>
+							</div>
+							<div class="modal-body overflow-visible">
+								<div class="form-group">
+										旧密码：
+				                     <input type="password" id="oldPassword" name="oldPassword" 
+				                     class="form-control input-sm" id="pwd1" placeholder="旧密码">
+				                </div>
+								<div class="form-group">
+										新密码：
+				                     <input type="password" id="newPassword" name="newPassword" 
+				                     class="form-control input-sm" id="pwd1" placeholder="新密码">
+				                </div>
+				                <div class="form-group">
+				                	重复新密码：
+				                	<input type="password" id="confirmNewPassword" name="confirmNewPassword"
+				                	 class="form-control input-sm" id="pwd1" placeholder="重复新密码">
+				                </div>
+							</div>
+							<div class="modal-footer">
+								<button class="btn btn-sm" data-dismiss="modal">
+									<i class="icon-remove"></i>取消
+								</button>
+								<button class="btn btn-sm btn-primary" onclick="savepwd()">
+									<i class="icon-ok"></i>确定
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>	
+				
+				<div id="control-panel" class="modal" tabindex="-1">
+				<div class="modal-dialog">
+				<div class="modal-content">
+						<div class="modal-header" style="background-color:#438eb9;color:#fff;">
+							<button type="button" style="color: #fff;opacity: 100;" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="white bigger">控制面板</h4>
+						</div>
+						<div class="modal-body overflow-visible">
+							<!-- <div class="form-group">
+									<select id="skin-colorpicker" class="hide">
+										<option data-skin="default" value="#438EB9">#438EB9</option>
+										<option data-skin="skin-1" value="#222A2D">#222A2D</option>
+										<option data-skin="skin-2" value="#C6487E">#C6487E</option>
+										<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+									</select>
+								<span>&nbsp; 选择皮肤</span>
+							</div> -->
+	
+							<div class="form-group">
+								<input type="checkbox" class="form-control ace ace-checkbox-2" id="ace-settings-navbar" />
+								<label class="lbl" for="ace-settings-navbar"><span style="margin-left:15px;">固定导航条</span></label>
+							</div>
+	
+							<div class="form-group">
+								<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-sidebar" />
+								<label class="lbl" for="ace-settings-sidebar"><span style="margin-left:15px;">固定滑动条</span></label>
+							</div>
+	
+							<div class="form-group">
+								<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs" />
+								<label class="lbl" for="ace-settings-breadcrumbs"><span style="margin-left:15px;">固定面包屑</span></label>
+							</div>
+							<div class="form-group">
+								<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container" />
+								<label class="lbl" for="ace-settings-add-container"><span style="margin-left:15px;">切换窄屏</span>
+									<b></b>
+								</label>
+							</div>
+							
+							<div class="form-group  clearfix">
+								<button class="btn btn-sm btn-primary pull-right" data-dismiss="modal">
+									<i class="icon-ok"></i>确定
+								</button>
+							</div>
+						</div>
+				</div><!-- /.modal-body overflow-visible -->
+				</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+				</div><!-- /.control-panel -->
+
+				<!-- <div class="ace-settings-container" id="ace-settings-container">
+					<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
+						<i class="icon-cog bigger-150"></i>
+					</div>
+			</div>/.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+		
+		<div id="modal-form1" class="modal" tabindex="-1" style="display:none;">
+		<div class="modal-dialog" id="modal-dialog1">
+			<div class="modal-content" style="width: 860px;">
+				<div class="modal-header" style="background-color:#438eb9;color:#fff;">
+					<button type="button" style="color: #fff;opacity: 100;" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="white bigger" id="modaltitle">管理</h4>
 				</div>
-			</div>
-		    <div id="footer" class="row-fluid">
-	            Copyright &copy; 2012-${fns:getConfig('copyrightYear')} ${fns:getConfig('productName')} - Powered By <a href="http://jeesite.com" target="_blank">JeeSite</a> ${fns:getConfig('version')}
+				<div class="modal-body overflow-visible">
+					<iframe id="iframepage1" name="iframepage1" width="830px"  height="550px" src=""
+					onLoad="" frameborder="no" border="0" marginwidth="0" 
+					marginheight="0" scrolling="yes" allowtransparency="yes"></iframe> 
+				</div>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript"> 
-		var leftWidth = 160; // 左侧窗口大小
-		var tabTitleHeight = 33; // 页签的高度
-		var htmlObj = $("html"), mainObj = $("#main");
-		var headerObj = $("#header"), footerObj = $("#footer");
-		var frameObj = $("#left, #openClose, #right, #right iframe");
-		function wSize(){
-			var minHeight = 500, minWidth = 980;
-			var strs = getWindowSize().toString().split(",");
-			htmlObj.css({"overflow-x":strs[1] < minWidth ? "auto" : "hidden", "overflow-y":strs[0] < minHeight ? "auto" : "hidden"});
-			mainObj.css("width",strs[1] < minWidth ? minWidth - 10 : "auto");
-			frameObj.height((strs[0] < minHeight ? minHeight : strs[0]) - headerObj.height() - footerObj.height() - (strs[1] < minWidth ? 42 : 28));
-			$("#openClose").height($("#openClose").height() - 5);// <c:if test="${tabmode eq '1'}"> 
-			$(".jericho_tab iframe").height($("#right").height() - tabTitleHeight); // </c:if>
-			wSizeWidth();
-		}
-		function wSizeWidth(){
-			if (!$("#openClose").is(":hidden")){
-				var leftWidth = ($("#left").width() < 0 ? 0 : $("#left").width());
-				$("#right").width($("#content").width()- leftWidth - $("#openClose").width() -5);
-			}else{
-				$("#right").width("100%");
-			}
-		}// <c:if test="${tabmode eq '1'}"> 
-		function openCloseClickCallBack(b){
-			$.fn.jerichoTab.resize();
-		} // </c:if>
-	</script>
-	<script src="${ctxStatic}/common/wsize.min.js" type="text/javascript"></script>
 </body>
 </html>

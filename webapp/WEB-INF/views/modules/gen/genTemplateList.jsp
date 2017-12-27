@@ -19,7 +19,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/gen/genTemplate/">代码模板列表</a></li>
-		<shiro:hasPermission name="gen:genTemplate:edit"><li><a href="${ctx}/gen/genTemplate/form">代码模板添加</a></li></shiro:hasPermission>
+		<li><a href="${ctx}/gen/genTemplate/form">代码模板添加</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="genTemplate" action="${ctx}/gen/genTemplate/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -36,17 +36,17 @@
 	</div>
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
-		<thead><tr><th>名称</th><th>分类</th><th>备注</th><shiro:hasPermission name="gen:genTemplate:edit"><th>操作</th></shiro:hasPermission></tr></thead>
+		<thead><tr><th>名称</th><th>分类</th><th>备注</th><th>操作</th></tr></thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="genTemplate">
 			<tr>
 				<td><a href="${ctx}/gen/genTemplate/form?id=${genTemplate.id}">${genTemplate.name}</a></td>
 				<td>${fns:getDictLabels(genTemplate.category, 'gen_category', '')}</td>
 				<td>${fns:abbr(genTemplate.remarks, 100)}</td>
-				<shiro:hasPermission name="gen:genTemplate:edit"><td>
+				<td>
     				<a href="${ctx}/gen/genTemplate/form?id=${genTemplate.id}">修改</a>
 					<a href="${ctx}/gen/genTemplate/delete?id=${genTemplate.id}" onclick="return confirmx('确认要删除该代码模板吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

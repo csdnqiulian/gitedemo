@@ -3,6 +3,7 @@ package com.common.config;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+
 import org.springframework.core.io.DefaultResourceLoader;
 import com.common.util.PropertiesLoader;
 import com.common.util.StringUtils;
@@ -94,6 +95,13 @@ public class Global {
 		return getConfig("urlSuffix");
 	}
 	
+	/**
+	 * 获取外网访问地址
+	 */
+	public static String getOuterNetUrl(){
+		return getConfig("outer_neturl");
+	}
+	
 	
 	/**
 	 * 在修改系统用户和角色时是否同步到Activiti
@@ -133,8 +141,8 @@ public class Global {
 			dir += "/";
 		}
 		return dir;
-	}*/
-	
+	}
+	*/
     /**
      * 获取工程路径
      * @return
