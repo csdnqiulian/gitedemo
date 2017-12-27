@@ -20,7 +20,7 @@
 		</div>
 		<div id="openClose" class="close">&nbsp;</div>
 		<div id="right">
-			<iframe id="officeContent" src="${ctx}/sys/office/list?id=&parentIds=" width="100%" height="91%" frameborder="0"></iframe>
+			<iframe id="officeContent" src="${ctx}/sys/office/list?id=&parentIds=" width="100%" frameborder="0" onload="setIframeHeight()" scrolling="no"></iframe>
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -28,6 +28,7 @@
 			callback:{onClick:function(event, treeId, treeNode){
 					var id = treeNode.pId == '0' ? '' :treeNode.pId;
 					$('#officeContent').attr("src","${ctx}/sys/office/list?id="+id+"&parentIds="+treeNode.pIds);
+					setIframeHeight();
 				}
 			}
 		};
@@ -51,6 +52,18 @@
 			$("#right").width($("#content").width()- leftWidth - $("#openClose").width() -5);
 			$(".ztree").width(leftWidth - 10).height(frameObj.height() - 46);
 		}
+		
+		function setIframeHeight() {
+			var iframe = document.getElementById('officeContent')
+			if (iframe) {
+				var iframeWin = iframe.contentWindow ;
+				if (iframeWin.document.body) {
+					iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+				}
+				parent.document.getElementById('iframepage').style.height= iframe.height + 'px';
+			}
+		};
+
 	</script>
 	<script src="${ctxStatic}/common/wsize.min.js" type="text/javascript"></script>
 </body>

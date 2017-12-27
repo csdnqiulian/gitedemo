@@ -356,7 +356,7 @@
 					<div class="page-content">
 						<!-- PAGE CONTENT BEGINS -->
 						<iframe id="iframepage" name="iframepage" width="100%" src="${ctx}/sys/user/innerindex"
-						onLoad="iFrameHeight()" frameborder="no" border="0" marginwidth="0" 
+						onLoad="" frameborder="no" border="0" marginwidth="0" 
 						marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
 						<!-- PAGE CONTENT ENDS -->
 					</div><!-- /.page-content -->
