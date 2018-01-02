@@ -106,10 +106,6 @@
 	</script>
 </head>
 <body>
-	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/test/testfreemarker/">测试成才列表</a></li>
-		<li class="active"><a href="${ctx}/test/testfreemarker/form?id=${testfreemarker.id}">测试成才${not empty testfreemarker.id?'修改':'添加'}</a></li>
-	</ul><br/>
 	<form:form id="inputForm" modelAttribute="testfreemarker" action="${ctx}/test/testfreemarker/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
@@ -169,16 +165,8 @@
     <script type="text/javascript">
         var ue = UE.getEditor('container',{
         	  initialFrameHeight: 340 ,//设置编辑器高度
-        	  initialFrameWidth : 640  //设置编辑器宽度
+        	  initialFrameWidth : 440  //设置编辑器宽度
         });
-        /* var remark = $("textarea[name=remark]").html();
-        debugger;
-        var ue = UE.getEditor('container');
-        ue.ready(function() {
-            //异步回调
-            ue.setContent("");
-            ue.execCommand('insertHtml', remark);
-        });  */
     </script>
     </form:form>
 </body>

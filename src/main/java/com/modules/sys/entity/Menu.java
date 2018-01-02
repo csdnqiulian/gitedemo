@@ -150,7 +150,7 @@ public class Menu extends DataEntity<Menu> {
 
 	@JsonIgnore
 	public static String getRootId(){
-		return "1";
+		return "0";
 	}
 	
 	public String getUserId() {

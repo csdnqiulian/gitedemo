@@ -62,12 +62,11 @@
 		<script src="${ctxStatic}/plug/ace/assets/js/jquery.gritter.min.js"></script>
 		<script src="${ctxStatic}/plug/custom/js/model.js"></script>
 		<script src="${ctxStatic}/plug/custom/js/progress.js"></script>
-
+		
 		<script type="text/javascript">
 			function iFrameHeight() {
-				debugger;
 				var ifm = document.getElementById("iframepage"); 
-				try{
+				  try{
 					ifm.scrolling = "no";
 		        	var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;   
 		        	if(ifm != null && subWeb != null) {
@@ -76,8 +75,9 @@
 				}catch(e){//跨域的情况下
 					ifm.height = "510";
 					ifm.scrolling = "yes";
-				}
-	        	
+				} 
+				/* ifm.scrolling="yes";
+				ifm.height = $(window).innerHeight(); */
 	       	}
 			var jqgridheight = "";
 			$(function(){
@@ -112,7 +112,7 @@
 				$('#'+activeId).addClass("active");
 	        }
 			
-			/*  function savepwd(){
+			  function savepwd(){
 				var oldPassword = $('#oldPassword').val();
 				var newPassword = $('#newPassword').val();
 				var confirmNewPassword = $('#confirmNewPassword').val();
@@ -125,29 +125,29 @@
 					return;
 				}
 				$.ajax({
-	        		url : "${ctx}/sys/user/modifyPwd.do?oldPassword="+oldPassword+"&newPassword="+newPassword",
+	        		url : "${ctx}/sys/user/modiUserPwd.do?oldPassword="+oldPassword+"&newPassword="+newPassword,
 	        		type : 'POST',
-	        		dataType : 'text',
+	        		dataType : 'JSON',
 	        		data : '',
 	        		success : function(result) {
-	        			var resultJson = JSON.parse(result);
-	        			if(resultJson.code == '0'){
+	        			debugger;
+	        			if(result.index == '0'){
 	        				$('#modal-form').modal('hide');
 	        				bootbox.alert({
 	        		            message: "密码修改成功，请重新登录！",  
 	        		            callback: function() {  
-	        		            	location.href = '${pageContext.request.contextPath}/logout.do';
+	        		            	location.href = '${ctx}/logout';
 	        		            }
 	           				});
 	        			}else{
-	        				bootbox.alert("操作失败：【"+resultJson.description+"】");
+	        				bootbox.alert("修改密码失败！");
 	        			}
 	        		},
 	        		error : function(jqXHR, textStatus, errorThrown) {
 	        			bootbox.alert(jqXHR+textStatus+errorThrown+ "发生异常，操作失败");
 	        		}
 	        	}); 
-			}  */
+			}  
 			
 		</script>
 	</head>
@@ -356,7 +356,7 @@
 					<div class="page-content">
 						<!-- PAGE CONTENT BEGINS -->
 						<iframe id="iframepage" name="iframepage" width="100%" src="${ctx}/sys/user/innerindex"
-						onLoad="" frameborder="no" border="0" marginwidth="0" 
+						onLoad="iFrameHeight()" frameborder="no" border="0" marginwidth="0" 
 						marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
 						<!-- PAGE CONTENT ENDS -->
 					</div><!-- /.page-content -->

@@ -3,7 +3,24 @@
 <html>
 <head>
 	<title>测试成才管理</title>
-	<meta name="decorator" content="default"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="${ctxStatic}/plug/ace/assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="${ctxStatic}/plug/ace/assets/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="${ctxStatic}/plug/ace/assets/css/ui.jqgrid.css" />
+		<link rel="stylesheet" href="${ctxStatic}/plug/ace/assets/css/ace.min.css" />
+		<!-- 自定义 styles -->
+		<link rel="stylesheet" href="${ctxStatic}/plug/custom/css/main.css" />
+		<!-- basic scripts -->
+		<!--[if IE]>
+		<script src="${ctxStatic}/plug/ace/assets/js/jquery-1.10.2.min.js"></script>
+		<![endif]-->
+		<!--[if !IE]> -->
+		<script src="${ctxStatic}/plug/ace/assets/js/jquery-2.0.3.min.js"></script>
+		<!-- <![endif]-->
+		<script src="${ctxStatic}/plug/ace/assets/js/bootstrap.min.js"></script>
+		<script src="${ctxStatic}/plug/ace/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
+		<script src="${ctxStatic}/plug/ace/assets/js/jqGrid/i18n/grid.locale-cn.js"></script>
+		<script src="${ctxStatic}/plug/custom/js/common.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			
@@ -14,6 +31,10 @@
 			$("#searchForm").submit();
         	return false;
         }
+		function toAdd(){
+			var url = "${ctx}/test/testfreemarker/form";
+			window.location.href = url;
+		}
 	</script>
 </head>
 <body>
@@ -22,7 +43,7 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="添加"/></li>
+			<li class="btns"><input id="btn" class="btn btn-primary" type="button" onclick="toAdd();" value="添加"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>

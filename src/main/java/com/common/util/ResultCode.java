@@ -1,14 +1,9 @@
 package com.common.util;
 
 /**
- * 
  *<p>Title:ResultCode.java</p>
  *<p>Description:错误代码结果集</p>
- *<p>Copyright:Copyright (c) 2013</p>
- *<p>Company:湖南科创</p>
- *@author 陈建华
  *@version 1.0
- *Apr 28, 2013
  */
 public class ResultCode {
 	private int index;

@@ -43,13 +43,16 @@
 		var htmlObj = $("html"), mainObj = $("#main");
 		var frameObj = $("#left, #openClose, #right, #right iframe");
 		function wSize(){
+			debugger;
 			var strs = getWindowSize().toString().split(",");
+			parent.document.getElementById("iframepage").style.height = "500px"; 
 			htmlObj.css({"overflow-x":"hidden", "overflow-y":"hidden"});
 			mainObj.css("width","auto");
 			frameObj.height(strs[0] - 5);
 			var leftWidth = ($("#left").width() < 0 ? 0 : $("#left").width());
 			$("#right").width($("#content").width()- leftWidth - $("#openClose").width() -5);
 			$(".ztree").width(leftWidth - 10).height(frameObj.height() - 46);
+			
 		}
 	</script>
 	<script src="${ctxStatic}/common/wsize.min.js" type="text/javascript"></script>

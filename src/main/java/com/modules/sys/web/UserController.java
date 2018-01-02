@@ -25,6 +25,7 @@ import com.common.excel.ExportExcel;
 import com.common.excel.ImportExcel;
 import com.common.persistence.Page;
 import com.common.util.DateUtils;
+import com.common.util.ResultCode;
 import com.common.util.StringUtils;
 import com.common.util.UserUtils;
 import com.common.web.BaseController;
@@ -125,7 +126,7 @@ public class UserController extends BaseController {
 		// 清除当前用户缓存
 		if (user.getLoginName().equals(UserUtils.getUser().getLoginName())){
 			UserUtils.clearCache();
-			//UserUtils.getCacheMap().clear();
+			 //UserUtils.getCacheMap().clear();
 		}
 		addMessage(redirectAttributes, "保存用户'" + user.getLoginName() + "'成功");
 		return "redirect:" + adminPath + "/sys/user/list?repage";
@@ -326,26 +327,19 @@ public class UserController extends BaseController {
 		}
 		return mapList;
 	}
-    
-//	@InitBinder
-//	public void initBinder(WebDataBinder b) {
-//		b.registerCustomEditor(List.class, "roleList", new PropertyEditorSupport(){
-//			@Autowired
-//			private SystemService systemService;
-//			@Override
-//			public void setAsText(String text) throws IllegalArgumentException {
-//				String[] ids = StringUtils.split(text, ",");
-//				List<Role> roles = new ArrayList<Role>();
-//				for (String id : ids) {
-//					Role role = systemService.getRole(Long.valueOf(id));
-//					roles.add(role);
-//				}
-//				setValue(roles);
-//			}
-//			@Override
-//			public String getAsText() {
-//				return Collections3.extractToString((List) getValue(), "id", ",");
-//			}
-//		});
-//	}
+	
+	@RequestMapping(value = "modiUserPwd")
+	public String modiUserPwd(HttpServletResponse response,String oldPassword, String newPassword, Model model) {
+		User user = UserUtils.getUser();
+		ResultCode result = ResultCode.OK;
+		if (StringUtils.isNotBlank(oldPassword) && StringUtils.isNotBlank(newPassword)){
+			if (SystemService.validatePassword(oldPassword, user.getPassword())){
+				systemService.updatePasswordById(user.getId(), user.getLoginName(), newPassword);
+				result = ResultCode.OK;
+			}else{
+				result = ResultCode.FAIL;
+			}
+		}
+		return renderString(response,result);
+	}
 }
