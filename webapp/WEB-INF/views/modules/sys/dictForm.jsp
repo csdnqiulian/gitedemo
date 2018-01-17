@@ -22,10 +22,22 @@
 					}
 				}
 			});
+			
+			
+			var jqgridheight = "";
+			//如果parent.top.jqgridheight不存在，那么就使用默认值300
+			try{
+				jqgridheight = parent.top.jqgridheight-135;
+			}catch(e){
+				jqgridheight = 400;
+			}
+			
+			$("#main").height(jqgridheight);
 		});
 	</script>
 </head>
 <body>
+  <div id="main" style="overflow:scroll;overflow-x:hidden">
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/sys/dict/">字典列表</a></li>
 		<li class="active"><a href="${ctx}/sys/dict/form?id=${dict.id}">字典${not empty dict.id?'修改':'添加'}</a></li>
@@ -74,5 +86,6 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
+	</div>
 </body>
 </html>

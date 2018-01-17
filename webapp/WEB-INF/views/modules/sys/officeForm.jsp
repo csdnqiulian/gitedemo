@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<script src="${ctxStatic}/common/jeesite.css" type="text/javascript"></script>
 <html>
 <head>
 	<title>机构管理</title>

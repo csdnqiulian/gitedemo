@@ -20,6 +20,11 @@
 				新框架：testweb</br>
 				首页还需要改造：333</br>
 			</p>
+				<h1>欢迎登录${fns:getConfig('productName')}</h1>
+			<p class="lead">
+				新框架：testweb</br>
+				首页还需要改造：333</br>
+			</p>	<h1>欢迎登录${fns:getConfig('productName')}</h1>
 		</div>
 	</div>
 </body>

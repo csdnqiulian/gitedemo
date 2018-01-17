@@ -15,8 +15,8 @@ import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
 import com.common.config.Global;
-import com.common.persistence.Page;
 import com.common.persistence.dialect.Dialect;
+import com.common.persistence.paging.Page;
 import com.common.util.Reflections;
 import com.common.util.StringUtils;
 
@@ -30,7 +30,6 @@ import java.util.regex.Pattern;
 
 /**
  * SQL工具类
- * @author poplar.yfyang / thinkgem
  * @version 2013-8-28
  */
 public class SQLHelper {
@@ -104,7 +103,6 @@ public class SQLHelper {
 			countSql = "select count(1) from (" + sql + ") tmp_count";
 		}else{
 			countSql = "select count(1) from (" + removeOrders(sql) + ") tmp_count";
-//	        countSql = "select count(1) " + removeSelect(removeOrders(sql));
 		}
         Connection conn = connection;
         PreparedStatement ps = null;
@@ -153,9 +151,12 @@ public class SQLHelper {
      * @param dialect 方言类型
      * @return 分页SQL
      */
-    public static String generatePageSql(String sql, Page<Object> page, Dialect dialect) {
-        if (dialect.supportsLimit()) {
-            return dialect.getLimitString(sql, page.getFirstResult(), page.getMaxResults());
+    public static String generatePageSql(String sql, Page<?> page, Dialect dialect) {
+    	if (dialect.supportsLimit()) {
+            int pageSize = page.getLength();
+            int index = (page.getPage() - 1) * pageSize;
+            int start = index < 0 ? 0 : index;
+            return dialect.getLimitString(sql, start, pageSize);
         } else {
             return sql;
         }

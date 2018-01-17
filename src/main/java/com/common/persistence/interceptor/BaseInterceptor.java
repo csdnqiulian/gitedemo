@@ -1,11 +1,12 @@
 package com.common.persistence.interceptor;
 
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.plugin.Interceptor;
 
 import com.common.config.Global;
-import com.common.persistence.Page;
+import com.common.persistence.annotation.Paging;
 import com.common.persistence.dialect.Dialect;
 import com.common.persistence.dialect.db.DB2Dialect;
 import com.common.persistence.dialect.db.DerbyDialect;
@@ -16,14 +17,16 @@ import com.common.persistence.dialect.db.OracleDialect;
 import com.common.persistence.dialect.db.PostgreSQLDialect;
 import com.common.persistence.dialect.db.SQLServer2005Dialect;
 import com.common.persistence.dialect.db.SybaseDialect;
+import com.common.persistence.paging.Page;
+import com.common.persistence.paging.Pagination;
 import com.common.util.Reflections;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.Properties;
 
 /**
  * Mybatis分页拦截器基类
- * @author poplar.yfyang / thinkgem
  * @version 2013-8-28
  */
 public abstract class BaseInterceptor implements Interceptor, Serializable {
@@ -40,11 +43,6 @@ public abstract class BaseInterceptor implements Interceptor, Serializable {
 
     protected Dialect DIALECT;
 
-//    /**
-//     * 拦截的ID，在mapper中的id，可以匹配正则
-//     */
-//    protected String _SQL_PATTERN = "";
-
     /**
      * 对参数进行转换和检查
      * @param parameterObject 参数对象
@@ -53,13 +51,29 @@ public abstract class BaseInterceptor implements Interceptor, Serializable {
      * @throws NoSuchFieldException 无法找到参数
      */
     @SuppressWarnings("unchecked")
-	protected static Page<Object> convertParameter(Object parameterObject, Page<Object> page) {
+	protected static Page<?> convertParameter(Object parameterObject, Page<?> pageVO) {
     	try{
-            if (parameterObject instanceof Page) {
-                return (Page<Object>) parameterObject;
-            } else {
-                return (Page<Object>)Reflections.getFieldValue(parameterObject, PAGE);
-            }
+    		if (parameterObject instanceof Page) {
+    			pageVO = (Pagination<?>) parameterObject;
+    		} else {
+    			// 参数为某个实体，该实体拥有Page属性
+    			Paging paging = parameterObject.getClass().getAnnotation(Paging.class);
+    			if(paging!=null){
+    				String field = paging.field();
+	    			Field pageField = Reflections.getAccessibleField(parameterObject,field);
+	    			if (pageField != null) {
+	    				pageVO = (Pagination<?>) Reflections.getFieldValue(parameterObject, field);
+	    				if (pageVO == null){
+	    					throw new PersistenceException("分页参数不能为空");
+	    				}
+	    				// 通过反射，对实体对象设置分页对象
+	    				Reflections.setFieldValue(parameterObject, field, pageVO);
+	    			} else {
+	    				throw new NoSuchFieldException(parameterObject.getClass().getName() + "不存在分页参数属性！");
+	    			}
+    			} 
+    		}
+    		return pageVO;
     	}catch (Exception e) {
 			return null;
 		}

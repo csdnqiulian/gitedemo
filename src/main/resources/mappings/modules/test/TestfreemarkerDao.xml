@@ -20,7 +20,7 @@
 		WHERE a.id = #{id}
 	</select>
 	
-	<select id="findList" resultType="Testfreemarker">
+	<select id="findList" resultType="Testfreemarker" parameterType="pageRequest">
 		SELECT 
 			<include refid="testfreemarkerColumns"/>
 		FROM testfreemarker a
@@ -28,13 +28,15 @@
 		<where>
 			
 		</where>
-		<choose>
-			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
-				ORDER BY ${page.orderBy}
-			</when>
-			<otherwise>
-			</otherwise>
-		</choose>
+		<if test="pageVO.orderName != null and pageVO.orderName != ''">
+			order by ${pageVO.orderName}
+             <choose>
+                 <when test="pageVO.orderType !=null and pageVO.orderType != ''">
+                 	${pageVO.orderType}
+                 </when>
+                 <otherwise>asc</otherwise>
+             </choose>
+         </if>
 	</select>
 	
 	<select id="findAllList" resultType="Testfreemarker">

@@ -40,8 +40,9 @@
 	<!-- 类型别名 -->
 	<typeAliases>
 		<typeAlias alias="Page" type="com.common.persistence.Page" /><!--分页  -->
+		<!-- jqgrid分页bean  -->
+		<typeAlias alias="pageRequest" type="com.common.persistence.paging.PageRequest" />
 	</typeAliases>
-	
 	<!-- 插件配置 -->
 	<plugins>
 		<plugin interceptor="com.common.persistence.interceptor.PaginationInterceptor" />

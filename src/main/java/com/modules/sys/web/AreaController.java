@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.common.config.Global;
 import com.common.util.StringUtils;
 import com.common.util.UserUtils;
 import com.common.web.BaseController;
@@ -59,19 +57,6 @@ public class AreaController extends BaseController {
 			area.setParent(UserUtils.getUser().getOffice().getArea());
 		}
 		area.setParent(areaService.get(area.getParent().getId()));
-//		// 自动获取排序号
-//		if (StringUtils.isBlank(area.getId())){
-//			int size = 0;
-//			List<Area> list = areaService.findAll();
-//			for (int i=0; i<list.size(); i++){
-//				Area e = list.get(i);
-//				if (e.getParent()!=null && e.getParent().getId()!=null
-//						&& e.getParent().getId().equals(area.getParent().getId())){
-//					size++;
-//				}
-//			}
-//			area.setCode(area.getParent().getCode() + StringUtils.leftPad(String.valueOf(size > 0 ? size : 1), 4, "0"));
-//		}
 		model.addAttribute("area", area);
 		return "modules/sys/areaForm";
 	}

@@ -30,7 +30,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/sys/office/list?id=${office.id}&parentIds=${office.parentIds}">机构列表</a></li>
-		 <li><a href="${ctx}/sys/office/form?parent.id=${office.id}">机构添加</a></li>
+		<li><a href="${ctx}/sys/office/form?parent.id=${office.id}">机构添加</a></li>
 	</ul>
 	<sys:message content="${message}"/>
 	<table id="treeTable" class="table table-striped table-bordered table-condensed">

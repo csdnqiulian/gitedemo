@@ -10,7 +10,7 @@ import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
 
-import com.common.persistence.Page;
+import com.common.persistence.paging.Page;
 import com.common.util.Reflections;
 
 import java.sql.Connection;
@@ -53,9 +53,9 @@ public class PreparePaginationInterceptor extends BaseInterceptor {
                     final String sql = boundSql.getSql();
                     //记录统计
                     final int count = SQLHelper.getCount(sql, connection, mappedStatement, parameterObject, boundSql, log);
-                    Page<Object> page = null;
+                    Page<?> page = null;
                     page = convertParameter(parameterObject, page);
-                    page.setCount(count);
+                    page.setRecords(count);
                     String pagingSql = SQLHelper.generatePageSql(sql, page, DIALECT);
                     if (log.isDebugEnabled()) {
                         log.debug("PAGE SQL:" + pagingSql);
@@ -69,7 +69,6 @@ public class PreparePaginationInterceptor extends BaseInterceptor {
                 }
                 
             }
-//        }
         return ivk.proceed();
     }
 

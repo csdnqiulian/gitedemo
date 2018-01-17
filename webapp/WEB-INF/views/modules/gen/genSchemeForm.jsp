@@ -22,10 +22,21 @@
 					}
 				}
 			});
+			
+			var jqgridheight = "";
+			//如果parent.top.jqgridheight不存在，那么就使用默认值300
+			try{
+				jqgridheight = parent.top.jqgridheight-135;
+			}catch(e){
+				jqgridheight = 400;
+			}
+			
+			$("#main").height(jqgridheight);
 		});
 	</script>
 </head>
 <body>
+   <div id="main" style="overflow:scroll;overflow-x:hidden">
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/gen/genScheme/">生成方案列表</a></li>
 		<li class="active"><a href="${ctx}/gen/genScheme/form?id=${genScheme.id}">生成方案${not empty genScheme.id?'修改':'添加'}</a></li>
@@ -120,5 +131,6 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
+  </div>
 </body>
 </html>

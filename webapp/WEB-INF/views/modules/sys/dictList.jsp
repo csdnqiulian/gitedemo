@@ -5,6 +5,18 @@
 	<title>字典管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
+		$(document).ready(function() {
+			var jqgridheight = "";
+			//如果parent.top.jqgridheight不存在，那么就使用默认值300
+			try{
+				jqgridheight = parent.top.jqgridheight-135;
+			}catch(e){
+				jqgridheight = 400;
+			}
+			
+			$("#main").height(jqgridheight);
+			
+		});
 		function page(n,s){
 			$("#pageNo").val(n);
 			$("#pageSize").val(s);
@@ -14,6 +26,7 @@
 	</script>
 </head>
 <body>
+  <div id="main" style="overflow:scroll;overflow-x:hidden">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/sys/dict/">字典列表</a></li>
 		<li><a href="${ctx}/sys/dict/form?sort=10">字典添加</a></li>
@@ -46,5 +59,6 @@
 		</tbody>
 	</table>
 	<div class="pagination">${page}</div>
+ </div>
 </body>
 </html>

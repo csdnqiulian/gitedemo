@@ -12,7 +12,7 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 
-import com.common.persistence.Page;
+import com.common.persistence.paging.Page;
 import com.common.util.Reflections;
 import com.common.util.StringUtils;
 
@@ -42,13 +42,13 @@ public class PaginationInterceptor extends BaseInterceptor {
             Object parameterObject = boundSql.getParameterObject();
 
             //获取分页参数对象
-            Page<Object> page = null;
+            Page<?> page = null;
             if (parameterObject != null) {
                 page = convertParameter(parameterObject, page);
             }
 
             //如果设置了分页对象，则进行分页
-            if (page != null && page.getPageSize() != -1) {
+            if (page != null) {
 
             	if (StringUtils.isBlank(boundSql.getSql())){
                     return null;
@@ -56,13 +56,11 @@ public class PaginationInterceptor extends BaseInterceptor {
                 String originalSql = boundSql.getSql().trim();
             	
                 //得到总记录数
-                page.setCount(SQLHelper.getCount(originalSql, null, mappedStatement, parameterObject, boundSql, log));
+                int count = SQLHelper.getCount(originalSql, null, mappedStatement, parameterObject, boundSql, log);
+                page.setRecords(count);
 
                 //分页查询 本地化对象 修改数据库注意修改实现
                 String pageSql = SQLHelper.generatePageSql(originalSql, page, DIALECT);
-//                if (log.isDebugEnabled()) {
-//                    log.debug("PAGE SQL:" + StringUtils.replace(pageSql, "\n", ""));
-//                }
                 invocation.getArgs()[2] = new RowBounds(RowBounds.NO_ROW_OFFSET, RowBounds.NO_ROW_LIMIT);
                 BoundSql newBoundSql = new BoundSql(mappedStatement.getConfiguration(), pageSql, boundSql.getParameterMappings(), boundSql.getParameterObject());
                 //解决MyBatis 分页foreach 参数失效 start
@@ -75,7 +73,6 @@ public class PaginationInterceptor extends BaseInterceptor {
 
                 invocation.getArgs()[0] = newMs;
             }
-//        }
         return invocation.proceed();
     }
 

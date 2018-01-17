@@ -45,8 +45,8 @@ public class TestfreemarkerController extends BaseController {
 	
 	@RequestMapping(value = {"list", ""})
 	public String list(Testfreemarker testfreemarker, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<Testfreemarker> page = testfreemarkerService.findPage(new Page<Testfreemarker>(request, response), testfreemarker); 
-		model.addAttribute("page", page);
+		//Page<Testfreemarker> page = testfreemarkerService.findPage(new Page<Testfreemarker>(request, response), testfreemarker); 
+		//model.addAttribute("page", page);
 		return "modules/test/testfreemarkerList";
 	}
 

@@ -66,7 +66,7 @@
 		<script type="text/javascript">
 			function iFrameHeight() {
 				var ifm = document.getElementById("iframepage"); 
-				  try{
+				try{
 					ifm.scrolling = "no";
 		        	var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;   
 		        	if(ifm != null && subWeb != null) {
@@ -75,9 +75,8 @@
 				}catch(e){//跨域的情况下
 					ifm.height = "510";
 					ifm.scrolling = "yes";
-				} 
-				/* ifm.scrolling="yes";
-				ifm.height = $(window).innerHeight(); */
+				}
+	        	
 	       	}
 			var jqgridheight = "";
 			$(function(){

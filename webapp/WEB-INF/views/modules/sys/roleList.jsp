@@ -4,8 +4,22 @@
 <head>
 	<title>角色管理</title>
 	<meta name="decorator" content="default"/>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var jqgridheight = "";
+			//如果parent.top.jqgridheight不存在，那么就使用默认值300
+			try{
+				jqgridheight = parent.top.jqgridheight-135;
+			}catch(e){
+				jqgridheight = 400;
+			}
+			
+			$("#main").height(jqgridheight);
+			
+		});
+	</script>
 </head>
-<body>
+<body id="main" style="overflow:scroll;overflow-x:hidden">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/sys/role/">角色列表</a></li>
 		<li><a href="${ctx}/sys/role/form">角色添加</a></li>

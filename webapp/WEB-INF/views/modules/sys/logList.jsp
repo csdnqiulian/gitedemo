@@ -11,12 +11,21 @@
 			$("#searchForm").submit();
 	    	return false;
 	    }
+		
+		$(document).ready(function() {
+			var jqgridheight = "";
+			//如果parent.top.jqgridheight不存在，那么就使用默认值300
+			try{
+				jqgridheight = parent.top.jqgridheight-135;
+			}catch(e){
+				jqgridheight = 400;
+			}
+			$("#main").height(jqgridheight);
+		});
 	</script>
 </head>
 <body>
-<!-- 	<ul class="nav nav-tabs"> -->
-<%-- 		<li class="active"><a href="${ctx}/sys/log/">日志列表</a></li> --%>
-<!-- 	</ul> -->
+<div id="main" style="overflow:scroll;overflow-x:hidden">
 	<form:form id="searchForm" action="${ctx}/sys/log/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
@@ -50,8 +59,6 @@
 			</tr>
 			<c:if test="${not empty log.exception}"><tr>
 				<td colspan="8" style="word-wrap:break-word;word-break:break-all;">
-<%-- 					用户代理: ${log.userAgent}<br/> --%>
-<%-- 					提交参数: ${fns:escapeHtml(log.params)} <br/> --%>
 					异常信息: <br/>
 					${fn:replace(fn:replace(fns:escapeHtml(log.exception), strEnter, '<br/>'), strTab, '&nbsp; &nbsp; ')}</td>
 			</tr></c:if>
@@ -59,5 +66,6 @@
 		</tbody>
 	</table>
 	<div class="pagination">${page}</div>
+ </div>
 </body>
 </html>
